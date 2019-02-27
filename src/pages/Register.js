@@ -1,67 +1,65 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Icon, Row, Col } from "antd";
-
-const FormItem = Form.Item;
+import axios from 'axios';
 
 class Register extends Component {
-  handleSubmit = e => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        this.props.registerUser(values, this.props.history);
-      }
-    });
+
+  state = {
+    email: '',
+    password: '',
+    repeatPassword: '',
   };
 
+  handleEmailChange = (event) =>{
+    this.setState({ email: event.target.value })
+  }
+
+  handlePasswordChange = (event) =>{
+    this.setState({ password: event.target.value })
+  }
+
+  handleRepeatPasswordChange = (event) =>{
+    this.setState({ password: event.target.value })
+  }
+
+  handleSubmit = (event) => {
+    console.log(event, ' event here')
+    event.preventDefault();
+
+    const { email, password, repeatPassword } = this.state;
+    
+    const user = {
+      login: email,
+      password: password===repeatPassword ? password : null
+    }
+    
+    console.log(user);
+
+    axios.post('', user).then(res => {
+      console.log(res)
+    })
+
+  }
+
   render() {
-    // const { getFieldDecorator } = this.props.form;
 
     return (
-      <Row type="flex" justify="center">
-        <Col span={6}>
-          <Form onSubmit={this.handleSubmit} className="login-form">
-            <FormItem>
-              {/* {getFieldDecorator("username", {
-                rules: [
-                  { required: true, message: "Please input your username!" }
-                ]
-              })( */}
-                <Input
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Username"
-                />
-              {/* )} */}
-            </FormItem>
-            <FormItem>
-              {/* {getFieldDecorator("password", {
-                rules: [
-                  { required: true, message: "Please input your Password!" }
-                ]
-              })( */}
-                <Input
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  type="password"
-                  placeholder="Password"
-                />
-              {/* )} */}
-            </FormItem>
-            <FormItem>
-              <Button
-                type="primary"
-                htmlType="submit"
-                className="login-form-button"
-              >
-                Register
-              </Button>
-              Or <a href="/login">login now!</a>
-            </FormItem>
-          </Form>
-        </Col>
-      </Row>
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Email: 
+            <input type='text' name='email' onChange={this.handleEmailChange} />
+          </label>
+          <label>
+            Password: 
+            <input type='password' name='password' onChange={this.handlePasswordChange} />
+          </label>
+          <label>
+            Repeat Password: 
+            <input type='password' name='repeatPassword' onChange={this.handleRepeatPasswordChange} />
+          </label>
+          <button type='submit'>Register</button>
+        </form>
+      </div>  
     );
   }
 }
