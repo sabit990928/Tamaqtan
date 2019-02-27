@@ -2,8 +2,10 @@
 1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'ls', '--depth', '0', '--json' ]
 2 info using npm@3.5.2
 3 info using node@v8.10.0
-4 error extraneous: antd@3.13.5 /home/sabit/Desktop/projects/Tamaqtan/node_modules/antd
+4 error extraneous: antd@3.13.6 /home/sabit/Desktop/projects/Tamaqtan/node_modules/antd
+4 error extraneous: axios@0.18.0 /home/sabit/Desktop/projects/Tamaqtan/node_modules/axios
 4 error extraneous: react-router-dom@4.3.1 /home/sabit/Desktop/projects/Tamaqtan/node_modules/react-router-dom
+4 error extraneous: styled-components@4.1.3 /home/sabit/Desktop/projects/Tamaqtan/node_modules/styled-components
 4 error peer dep missing: typescript@*, required by ts-pnp@1.0.0
 5 verbose exit [ 1, true ]
 6 verbose stack Error: write EPIPE

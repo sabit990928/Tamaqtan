@@ -7,8 +7,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     
     if(isset($_POST['login'])&&isset($_POST['password'])){
 
-
-
             $query = $connection->prepare("SELECT * FROM users WHERE login =:login AND password =:password LIMIT 1 ");
 
              $query->execute(array("login"=>$_POST['login'], "password"=>sha1($_POST['password'] )));
