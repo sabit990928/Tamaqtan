@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
+import { withRouter } from "react-router-dom";
 
 const Form = styled.form`
   display: flex;
@@ -11,7 +12,7 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    result: {}
+    result: null
   };
 
   // componentDidMount() {
@@ -35,25 +36,28 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
+    const { email, password, result } = this.state;
 
     const user = {
-      login: email,
+      email: email,
       password: password
     }
-
-    axios.post(`http://10.8.130.113/tamaqtan/test.php`, { user })
+    
+// http://localhost/rest-api-authentication-example/api/login.php
+    // axios.post(`http://10.8.130.113/tamaqtan/test.php`, { user })
+    axios.post(`http://172.20.10.4/back/api/login.php`, user)
       .then(res => {
-        console.log(res)
+        this.setState({ result: res})
+        console.log("Data", res)  
+        this.props.history.push('/home')
       })
       .catch(res =>{
-        console.log(res)
+        console.log("Exception", res)
       }
       )
   }
 
   render() {
-
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -73,4 +77,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);

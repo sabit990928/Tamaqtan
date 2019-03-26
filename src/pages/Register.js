@@ -4,13 +4,23 @@ import axios from 'axios';
 class Register extends Component {
 
   state = {
-    email: '',
-    password: '',
-    repeatPassword: '',
+    firstname: null,
+    lastname: null,
+    email: null,
+    password: null,
+    // repeatPassword: 'ads',
   };
 
   handleEmailChange = (event) =>{
     this.setState({ email: event.target.value })
+  }
+
+  handleNameChange = (event) =>{
+    this.setState({ firstname: event.target.value })
+  }
+
+  handleSurnameChange = (event) =>{
+    this.setState({ lastname: event.target.value })
   }
 
   handlePasswordChange = (event) =>{
@@ -25,16 +35,22 @@ class Register extends Component {
     console.log(event, ' event here')
     event.preventDefault();
 
-    const { email, password, repeatPassword } = this.state;
+    const { email, password, firstname, lastname, repeatPassword } = this.state;
     
     const user = {
-      login: email,
-      password: password===repeatPassword ? password : null
+      firstname: firstname,
+      lastname: lastname,
+      email: email,
+      password: password
     }
-    
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'JWT fefege...' 
+    }
     console.log(user);
 
-    axios.post('', user).then(res => {
+    axios.post('http://172.20.10.4/back/api/create_user.php', user).then(res => {
+      console.log('asd', user)
       console.log(res)
     })
 
@@ -46,6 +62,14 @@ class Register extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <label>
+            First name: 
+            <input type='text' name='firstName' onChange={this.handleNameChange} />
+          </label>
+          <label>
+            Last name: 
+            <input type='text' name='lastName' onChange={this.handleSurnameChange} />
+          </label>
+          <label>
             Email: 
             <input type='text' name='email' onChange={this.handleEmailChange} />
           </label>
@@ -53,10 +77,10 @@ class Register extends Component {
             Password: 
             <input type='password' name='password' onChange={this.handlePasswordChange} />
           </label>
-          <label>
+          {/* <label>
             Repeat Password: 
             <input type='password' name='repeatPassword' onChange={this.handleRepeatPasswordChange} />
-          </label>
+          </label> */}
           <button type='submit'>Register</button>
         </form>
       </div>  
