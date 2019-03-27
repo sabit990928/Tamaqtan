@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import styled from 'styled-components';
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  height: 300px;
+  align-items: center;
+  flex-direction: column;
+`;
 class Register extends Component {
 
   state = {
@@ -59,8 +75,8 @@ class Register extends Component {
   render() {
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
+      <Container>
+        <Form onSubmit={this.handleSubmit}>
           <label>
             First name: 
             <input type='text' name='firstName' onChange={this.handleNameChange} />
@@ -82,8 +98,8 @@ class Register extends Component {
             <input type='password' name='repeatPassword' onChange={this.handleRepeatPasswordChange} />
           </label> */}
           <button type='submit'>Register</button>
-        </form>
-      </div>  
+        </Form>
+      </Container>  
     );
   }
 }
