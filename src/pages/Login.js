@@ -6,6 +6,17 @@ import { withRouter } from "react-router-dom";
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  height: 300px;
+  align-items: center;
+  flex-direction: column;
 `;
 class Login extends Component {
 
@@ -59,7 +70,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
+      <Container>
         <Form onSubmit={this.handleSubmit}>
           <label>
             Email: 
@@ -72,7 +83,7 @@ class Login extends Component {
           <button type='submit'>Login</button>
         </Form>
           Or <a href="/register">register</a> now
-      </div>  
+      </Container>  
     );
   }
 }
