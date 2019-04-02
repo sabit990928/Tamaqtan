@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Avatar } from 'antd';
 
 const Container = styled.div`
-  width: 80%;
-  height: 100%;
+  width: 90%;
+  height: 100vh;
 `;
+
+const UserInfo = styled.div`
+
+`
 
 const Profile = () => (
   <Container>
-    Nurba hi
+    <UserInfo>
+      <Avatar shape="square" size="large" icon="user" />
+
+    </UserInfo>
   </Container>
 )
 
