@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
+import { Slider } from '../components';
 
 const Form = styled.form`
   display: flex;
@@ -76,6 +77,7 @@ class Register extends Component {
 
     return (
       <Container>
+        <Slider />
         <Form onSubmit={this.handleSubmit}>
           <label>
             First name: 

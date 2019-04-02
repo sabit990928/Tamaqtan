@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Avatar, Calendar } from 'antd';
+import { Slider } from '../components';
 
 const Container = styled.div`
   width: 100%;
@@ -31,6 +32,10 @@ const StyledAvatar = styled(Avatar)`
   margin-left: 20px;
 `;
 
+const StyledCalendar = styled(Calendar)`
+  width: 80%;
+`
+
 class ProfileContainer extends Component {
 
   handlePanelChange = (value, mode) => {
@@ -44,7 +49,8 @@ class ProfileContainer extends Component {
           <StyledAvatar shape="square" size="large" icon="user" />
           <Label>Нурбол Толегенов</Label>
         </UserInfo>
-        <Calendar onPanelChange={this.handlePanelChange}></Calendar>
+        <Slider />
+        <StyledCalendar onPanelChange={this.handlePanelChange}></StyledCalendar>
       </Container>
     )
   }

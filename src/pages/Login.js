@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
 import { withRouter } from "react-router-dom";
+import { Slider } from '../components';
 
 const Form = styled.form`
   display: flex;
@@ -71,6 +72,7 @@ class Login extends Component {
   render() {
     return (
       <Container>
+        <Slider />
         <Form onSubmit={this.handleSubmit}>
           <label>
             Email: 
