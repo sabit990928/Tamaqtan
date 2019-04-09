@@ -58,7 +58,7 @@ class HeaderExample extends Component {
           <PageLink href="/profile">Профиль</PageLink>
         </LeftContainer>
         <RightContainer>
-          <PageLink href="/profile">Толегенов Нурбол</PageLink>
+          <PageLink href="/profile">Толегенов Нуsрбол</PageLink>
         </RightContainer>
       </Container>
     
