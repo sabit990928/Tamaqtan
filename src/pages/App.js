@@ -15,11 +15,7 @@ class App extends Component{
   render(){
     return (
       <div className="App">
-      <BrowserRouter>
-        <Layout>
-            <Home />
-        </Layout>
-      </BrowserRouter>
+
     </div>
     )
   }

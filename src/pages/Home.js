@@ -8,8 +8,6 @@ import img4 from './images/4.jpg';
 import img5 from './images/card.jpg';
 import img6 from './images/card2.jpg';
 import img7 from './images/card3.jpeg';
-
-// import { img, kk  d., , , } from './images';
 import './home.css';
 import styled from 'styled-components';
 
