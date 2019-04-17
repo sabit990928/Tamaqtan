@@ -15,9 +15,6 @@ import { Carousel } from 'antd';
 import { Steps, Button, message, Modal, Input, Checkbox } from 'antd';
 import { Card, Col, Row } from 'antd';
 
-
-
-
 const Step = Steps.Step;
 const Search = Input.Search;
 const {
@@ -82,68 +79,54 @@ class Home extends Component {
   render() {
     const { current } = this.state;
     return (
-      <div className="div">
-      <Container>
-        <LeftContainer>
-        <PageLink href="/home" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
-        </LeftContainer>
+      <div className="div"> 
 
+        <div className="search">
+          <Search
+          placeholder="Введите название блюда или ингредиента"
+          title="Поиск"
+          onSearch={value => console.log(value)}
+          enterButton/>
+        <br /><br />
 
-        <RightContainer>    
-          <PageLink href="/home" title="Главная">Главная</PageLink>      
-          <PageLink href="#" title="Рецепты">Рецепты</PageLink>
-          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
-          <PageLink href="/login" title="Вход" className="vhod">Вход</PageLink>
-        </RightContainer>
-      </Container>
+        <Carousel autoplay>
+          <div><img src={img1} className="img1"/></div>
+          <div><img src={img2} className="img1"/></div>
+          <div><img src={img3} className="img1"/></div>
+          <div><img src={img4} className="img1"/></div>
+        </Carousel>
 
-    
-    <div className="search">
-      <Search
-      placeholder="Введите название блюда или ингредиента"
-      title="Поиск"
-      onSearch={value => console.log(value)}
-      enterButton/>
-    <br /><br />
+        
+        
+        
+        </div>  
+        <div className="steps">
+        <h1>Как получить меню на неделю?</h1> 
+        <Steps current={3} className="step">    
+        <Step title="Авторизация" description="Войти в систему." />
+        <Step title="Рецепты" description="Выбирать рецепты." />
+        <Step title="Мое меню" description="Недельное меню." />
+        </Steps>
+        </div>
 
-    <Carousel autoplay>
-      <div><img src={img1} className="img1"/></div>
-      <div><img src={img2} className="img1"/></div>
-      <div><img src={img3} className="img1"/></div>
-      <div><img src={img4} className="img1"/></div>
-    </Carousel>
+        <div style={{ background: '#ECECEC'}} className="card">
+        <h1>Популярные рецепты</h1> 
+        <Row gutter={16}>
+          <Col span={8}>
+            <Card title="САЛАТ ЦЕЗАРЬ" bordered={false} className="cards"><img src={img5} className="img5"/><br/>Батон ...... 250гр. <br/>Куриное филе ...... 300гр. <br/> <Button type="primary" className="button1">Показать</Button></Card>
+          </Col>
+          <Col span={8}>
+            <Card title="ПЫШНЫЕ СЫРНИКИ" bordered={false} className="cards"><img src={img6} className="img5"/><br/>Творог ...... 200гр. <br/>Яйцо ...... 1шт. <br/> <Button type="primary" className="button1">Показать</Button></Card>
+          </Col>
+          <Col span={8}>
+            <Card title="СТЕЙК ИЗ ИНДЕЙКИ" bordered={false} className="cards"><img src={img7} className="img5"/><br/>Морковь   ...... 1 шт. <br/>Индейка ...... 500гр. <br/> <Button type="primary" className="button1">Показать</Button></Card>
+          </Col>
+        </Row>
+      </div>
 
-    
-    
-    
-    </div>  
-    <div className="steps">
-    <h1>Как получить меню на неделю?</h1> 
-    <Steps current={3} className="step">    
-    <Step title="Авторизация" description="Войти в систему." />
-    <Step title="Рецепты" description="Выбирать рецепты." />
-    <Step title="Мое меню" description="Недельное меню." />
-    </Steps>
-    </div>
-
-    <div style={{ background: '#ECECEC'}} className="card">
-    <h1>Популярные рецепты</h1> 
-    <Row gutter={16}>
-      <Col span={8}>
-        <Card title="САЛАТ ЦЕЗАРЬ" bordered={false} className="cards"><img src={img5} className="img5"/><br/>Батон ...... 250гр. <br/>Куриное филе ...... 300гр. <br/> <Button type="primary" className="button1">Показать</Button></Card>
-      </Col>
-      <Col span={8}>
-        <Card title="ПЫШНЫЕ СЫРНИКИ" bordered={false} className="cards"><img src={img6} className="img5"/><br/>Творог ...... 200гр. <br/>Яйцо ...... 1шт. <br/> <Button type="primary" className="button1">Показать</Button></Card>
-      </Col>
-      <Col span={8}>
-        <Card title="СТЕЙК ИЗ ИНДЕЙКИ" bordered={false} className="cards"><img src={img7} className="img5"/><br/>Морковь   ...... 1 шт. <br/>Индейка ...... 500гр. <br/> <Button type="primary" className="button1">Показать</Button></Card>
-      </Col>
-    </Row>
-  </div>
-
-  <Footer style={{ textAlign: 'center' }}>
-      Tamaqtan ©2019 
-  </Footer>
+      <Footer style={{ textAlign: 'center' }}>
+          Tamaqtan ©2019 
+      </Footer>
 
     </div>
   
