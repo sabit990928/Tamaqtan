@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from "antd";
+import './home.css';
 
 const Container = styled.div`
   width: 100%;
-  height: 50px;
-  background-color: gray;
+  height: 60px;
+  background-color: #2E9AFE;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -17,7 +18,7 @@ const LeftContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 30%;
   left: 40px;
 `;
 
@@ -26,15 +27,19 @@ const RightContainer = styled.div`
   flex-direction: row;
   justify-content: right;
   align-items: center;
-  width: 100%;
-  padding-right: 30px
+  width: 70%;
+  
+  
 `;
 
 const PageLink = styled.a`
-  padding-right: 10px;
-  color: white;
-  font-size: 16px;
+  padding-right: 10px;  
+  font-size: 15px;
   text-decoration: none;
+  color: white;
+  padding-right: 15 px;
+  margin-left: 65px;
+  
 `;
 
 class HeaderExample extends Component {
@@ -52,13 +57,14 @@ class HeaderExample extends Component {
     return (
       <Container>
         <LeftContainer>
-          <PageLink href="/login">Логин</PageLink>
-          <PageLink href="/register">Регистрация</PageLink>
-          <PageLink href="/home">Домой</PageLink>
-          <PageLink href="/profile">Профиль</PageLink>
+        <PageLink href="/home" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
         </LeftContainer>
-        <RightContainer>
-          <PageLink href="/profile">Толегенов Нуsрбол</PageLink>
+
+        <RightContainer>    
+          <PageLink href="/home" title="Главная">Главная</PageLink>      
+          <PageLink href="#" title="Рецепты">Рецепты</PageLink>
+          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
+          <PageLink href="/login" title="Вход" className="vhod">Вход</PageLink>
         </RightContainer>
       </Container>
     
