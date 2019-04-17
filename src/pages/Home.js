@@ -93,7 +93,7 @@ class Home extends Component {
           <PageLink href="/home" title="Главная">Главная</PageLink>      
           <PageLink href="#" title="Рецепты">Рецепты</PageLink>
           <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
-          <PageLink href="#" title="Вход" className="vhod">Вход</PageLink>
+          <PageLink href="/login" title="Вход" className="vhod">Вход</PageLink>
         </RightContainer>
       </Container>
 
