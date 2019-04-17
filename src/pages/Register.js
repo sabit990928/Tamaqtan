@@ -49,7 +49,6 @@ class Register extends Component {
   }
 
   handleSubmit = (event) => {
-    console.log(event, ' event here')
     event.preventDefault();
 
     const { email, password, firstname, lastname, repeatPassword } = this.state;
@@ -66,9 +65,14 @@ class Register extends Component {
     }
     console.log(user);
 
-    axios.post('http://172.20.10.4/back/api/create_user.php', user).then(res => {
+    axios.post('http://172.20.10.4/back/api/create_user.php', user)
+    .then(res => {
       console.log('asd', user)
-      console.log(res)
+      console.log(res);
+      this.props.history.push('/login')
+    })
+    .catch(res => {
+      console.log('Registration failed')
     })
 
   }
