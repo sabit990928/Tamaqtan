@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Modal, Button } from "antd";
+import { withRouter } from "react-router-dom";
 import './home.css';
 
 const Container = styled.div`
@@ -28,8 +29,6 @@ const RightContainer = styled.div`
   justify-content: right;
   align-items: center;
   width: 70%;
-  
-  
 `;
 
 const PageLink = styled.a`
@@ -42,16 +41,51 @@ const PageLink = styled.a`
   
 `;
 
+const StyledModal = styled(Modal)`
+  .ant-modal-footer {
+    display: none;
+  }
+`
+
 class HeaderExample extends Component {
   state = {
-    current: ""
+    current: "",
+    isVisible: false
   };
 
-  handleClick = e => {
+  handleShowModal = () => {
     this.setState({
-      current: e.key
+      isVisible: true
     });
   };
+
+  handleOk = (e) => {
+    console.log(e);
+    this.setState({
+      isVisible: false,
+    });
+  }
+
+  handleCancel = (e) => {
+    console.log(e);
+    this.setState({
+      isVisible: false,
+    });
+  }
+  
+  handleLoginClick = () => {
+    this.setState({
+      isVisible: false,
+    });
+    this.props.history.push('/login');
+  };
+
+  handleSignUpClick = () => {
+    this.props.history.push('/register');
+    this.setState({
+      isVisible: false,
+    });
+  }
 
   render() {
     return (
@@ -64,12 +98,26 @@ class HeaderExample extends Component {
           <PageLink href="/home" title="Главная">Главная</PageLink>      
           <PageLink href="#" title="Рецепты">Рецепты</PageLink>
           <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
-          <PageLink href="/login" title="Вход" className="vhod">Вход</PageLink>
+          <PageLink onClick={this.handleShowModal} title="Вход" className="vhod">Вход</PageLink>
         </RightContainer>
+
+        <StyledModal
+          visible={this.state.isVisible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Button 
+            type='primary' 
+            style={{marginLeft: '15px', marginRight: '30px'}} 
+            onClick={this.handleLoginClick}
+          >Bход</Button>
+          <Button type='primary' onClick={this.handleSignUpClick}>Регистрация</Button>
+        </StyledModal>
+
       </Container>
     
     );
   }
 }
 
-export default HeaderExample;
+export default withRouter(HeaderExample);
