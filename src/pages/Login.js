@@ -61,7 +61,7 @@ class Login extends Component {
       .then(res => {
         this.setState({ result: res})
         console.log("Data", res)  
-        this.props.history.push('/home')
+        this.props.history.push('/welcome')
       })
       .catch(res =>{
         console.log("Exception", res)
