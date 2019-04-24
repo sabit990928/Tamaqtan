@@ -78,3 +78,17 @@
 .button1{
   margin-top: 10px;
 }
+
+.login-form {
+  max-width: 300px;
+  height: 220px;
+  text-align: center;
+
+}
+.login-form-forgot {
+  float: right;
+}
+.login-form-button {
+  width: 100%;
+}
+
