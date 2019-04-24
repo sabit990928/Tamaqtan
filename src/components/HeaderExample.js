@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { Layout, Menu, Icon } from "antd";
+import { Layout, Menu, Icon, Modal, Button } from "antd";
+import { withRouter } from "react-router-dom";
 import './home.css';
 import { Modal, Form, Input, Button, Checkbox,} from 'antd';
 import axios from 'axios';
@@ -31,8 +32,6 @@ const RightContainer = styled.div`
   justify-content: right;
   align-items: center;
   width: 70%;
-  
-  
 `;
 
 const PageLink = styled.a`
@@ -44,7 +43,6 @@ const PageLink = styled.a`
   margin-left: 65px;
   
 `;
-
 
 
 class HeaderExample extends Component {

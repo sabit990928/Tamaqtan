@@ -46,8 +46,6 @@ const RightContainer = styled.div`
   justify-content: right;
   align-items: center;
   width: 70%;
-  
-  
 `;
 
 const PageLink = styled.a`
@@ -59,9 +57,6 @@ const PageLink = styled.a`
   margin-left: 65px;
   
 `;
-
-
-
 
 class Home extends Component {
   state = {
@@ -95,9 +90,6 @@ class Home extends Component {
           <div><img src={img3} className="img1"/></div>
           <div><img src={img4} className="img1"/></div>
         </Carousel>
-
-        
-        
         
         </div>  
         <div className="steps">
