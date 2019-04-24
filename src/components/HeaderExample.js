@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
-import { Layout, Menu, Icon, Modal, Button } from "antd";
+
 import { withRouter } from "react-router-dom";
 import './home.css';
-import { Modal, Form, Input, Button, Checkbox,} from 'antd';
+import {  Icon, Modal,Form, Input, Button, Checkbox,} from 'antd';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
-import { withRouter } from "react-router-dom";
+
 const Container = styled.div`
   width: 100%;
   height: 60px;
