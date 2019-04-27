@@ -1,9 +1,22 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
+import { withRouter } from "react-router-dom";
+import { Slider } from '../components';
 
 const Form = styled.form`
   display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Container = styled.div`
+  display: flex;
+  height: 300px;
+  align-items: center;
   flex-direction: column;
 `;
 class Login extends Component {
@@ -11,7 +24,7 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    result: {}
+    result: null
   };
 
   // componentDidMount() {
@@ -35,27 +48,31 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password } = this.state;
+    const { email, password, result } = this.state;
 
     const user = {
-      login: email,
+      email: email,
       password: password
     }
-
-    axios.post(`http://10.8.130.113/tamaqtan/test.php`, { user })
+    
+// http://localhost/rest-api-authentication-example/api/login.php
+    // axios.post(`http://10.8.130.113/tamaqtan/test.php`, { user })
+    axios.post(`http://172.20.10.4/back/api/login.php`, user)
       .then(res => {
-        console.log(res)
+        this.setState({ result: res})
+        console.log("Data", res)  
+        this.props.history.push('/welcome')
       })
       .catch(res =>{
-        console.log(res)
+        console.log("Exception", res)
       }
       )
   }
 
   render() {
-
     return (
-      <div>
+      <Container>
+        <Slider />
         <Form onSubmit={this.handleSubmit}>
           <label>
             Email: 
@@ -68,9 +85,9 @@ class Login extends Component {
           <button type='submit'>Login</button>
         </Form>
           Or <a href="/register">register</a> now
-      </div>  
+      </Container>  
     );
   }
 }
 
-export default Login;
+export default withRouter(Login);

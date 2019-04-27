@@ -1,0 +1,80 @@
+.div{
+  background-color: white;
+  width: 100%;
+
+}
+.logo {
+  align-items: center;
+  margin-right: 80px;
+  }
+
+  .header {
+    background-color: chartreuse;
+    height: 65px;
+  }
+
+  .menu{
+    background-color: chartreuse; 
+  }
+
+  .vhod{
+    margin-left: 350px;
+  }
+
+  .search{
+    width: 50%;
+    margin: 0px auto ;
+    padding-top: 10px;
+  }
+
+  .ant-carousel .slick-slide {
+    text-align: center;
+    height: 390px;
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+    
+  }
+  
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+
+  .img1{
+    height: 390px;
+    width: 100%;
+  }
+  
+.steps{
+  width: 100%;
+  margin-top: 20px;
+  padding-top: 15px;
+  background-color: white;
+}
+.step{
+  width: 100%;
+  padding-right: 170px;
+  
+}
+
+.card{
+  height: 440px;
+  padding: '30px';
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+.cards{
+  width: 350px;
+  margin-left: 43px;
+  height: 375px;
+}
+
+.img5{
+  height: 200px;
+  width: 200px;
+  
+}
+.button1{
+  margin-top: 10px;
+}
