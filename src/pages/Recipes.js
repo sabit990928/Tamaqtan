@@ -28,7 +28,7 @@ class Recipes extends Component {
       .then(res => {
         const data = res.data.records;
         console.log("data: ", res.data.records)
-        await this.setState({ data });
+        this.setState({ data });
       }).catch(res => console.log("Err: ", res))
   }
 
