@@ -34,7 +34,8 @@ if($email_exists && password_verify($data->password, $user->password)){
            "id" => $user->id,
            "firstname" => $user->firstname,
            "lastname" => $user->lastname,
-           "email" => $user->email
+           "email" => $user->email,
+           "is_user" => $user->is_user
        )
     );
     http_response_code(200);
@@ -45,7 +46,8 @@ if($email_exists && password_verify($data->password, $user->password)){
                 "message" => "Successful login.",
                 "jwt" => $jwt,
                 "email" =>$user->email,
-                "firstname"=>$user->firstname
+                "firstname"=>$user->firstname,
+                "is_user" => $user->is_user
             )
         );
  

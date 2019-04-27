@@ -12,11 +12,13 @@ class User{
     public $lastname;
     public $email;
     public $password;
+    public $is_user;
  
     
     public function __construct($db){
         $this->conn = $db;
     }
+
  // функция для создания юзера
 function create(){
  
@@ -26,7 +28,8 @@ function create(){
                 firstname = :firstname,
                 lastname = :lastname,
                 email = :email,
-                password = :password";
+                password = :password,
+                is_user = 1 ";
  
     $stmt = $this->conn->prepare($query);
  
@@ -34,7 +37,7 @@ function create(){
     $this->lastname=htmlspecialchars(strip_tags($this->lastname));
     $this->email=htmlspecialchars(strip_tags($this->email));
     $this->password=htmlspecialchars(strip_tags($this->password));
- 
+
     $stmt->bindParam(':firstname', $this->firstname);
     $stmt->bindParam(':lastname', $this->lastname);
     $stmt->bindParam(':email', $this->email);
@@ -55,7 +58,7 @@ function create(){
 function emailExists(){
  
 
-    $query = "SELECT id, firstname, lastname, password
+    $query = "SELECT id, firstname, lastname, password, is_user
             FROM " . $this->table_name . "
             WHERE email = ?
             LIMIT 0,1";
@@ -78,6 +81,7 @@ function emailExists(){
         $this->firstname = $row['firstname'];
         $this->lastname = $row['lastname'];
         $this->password = $row['password'];
+        $this->is_user = $row['is_user'];
  
         return true;
     }
