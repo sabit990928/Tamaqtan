@@ -122,7 +122,7 @@ class HeaderExample extends Component {
         <RightContainer>    
           <PageLink href="/home" title="Главная">Главная</PageLink>      
           <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
-          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
+          <PageLink href="/randomFood" title="Рандомное блюдо">Рандомное блюдо</PageLink>
           <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
         </RightContainer>
         <div>
