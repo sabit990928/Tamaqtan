@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import ReactDOM from 'react-dom';
-import img1 from './images/1.jpg';
-import img2 from './images/2.jpg';
-import img3 from './images/3.jpg';
-import img4 from './images/4.jpg';
-import img5 from './images/card.jpg';
-import img6 from './images/card2.jpg';
+
 import img7 from './images/card3.jpeg';
 import './home.css';
 import './recipes.css';
@@ -24,7 +19,7 @@ class Recipes extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://10.27.177.159/back/api/get_random_food.php`)
+    axios.get(`http://172.20.10.4/back/api/read.php`)
       .then(res => {
         const data = res.data.records;
         console.log("data: ", res.data.records)
@@ -32,69 +27,27 @@ class Recipes extends Component {
       }).catch(res => console.log("Err: ", res))
   }
 
-    
-    
-    
       render() {
         const { data } = this.state;
-         return (
-           <div>
-             Data
-             { data }
-           </div>
-        //   <div className="div"> 
-        //     <HeaderExample />
-            
-        // <div className="search">
-        //   <Search
-        //   placeholder="Введите название блюда или ингредиента"
-        //   title="Поиск"
-        //   onSearch={value => console.log(value)}
-        //   enterButton/>
-        // <br /><br />     
-        
-        
-        // </div>
-       
-        // <div className="listrec">
-        // <List 
-        //     itemLayout="vertical"
-        //     size="small"
-        //     pagination={{
-        //     onChange: (page) => {
-        //         console.log(page);
-        //     },
-        //     pageSize: 4,
-        //     }}
-        //     dataSource={listData}
-        //     width = {250}
-        //     renderItem={item => (
-        //     <List.Item
-            
-        //         key={item.title}
-        //         actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
-        //         extra={<img width={272} alt="logo" src={img4} />}
-        //     >
-        //         <List.Item.Meta
-                
-        //         avatar={<Avatar src={item.avatar} />}
-        //         title={<a href={item.href}>{item.title}</a>}
-        //         description={item.description}
-        //         />
-        //         {item.content}
-        // </List.Item>
-        // )}
-        // />
-        // </div>
+        return (
+          <div>
+          <HeaderExample />
+          <h1>Ваш блюдо</h1> 
+          { data.length > 0 && 
+          data.map(tamaq => 
+          <div style={{ background: '#ECECEC', width: "400px", flexDirection: "row"}} className="card">
+            <Row gutter={3}>
+              <Col>
+                <Card title={tamaq.name} bordered={false} className="cards"><img src={img7} className="img5"/>
 
-
-        //   <Footer style={{ textAlign: 'center' }}>
-        //       Tamaqtan ©2019 
-        //   </Footer>
-    
-        // </div>
-      
-      
+                <br/>{tamaq.recept} <br/>{tamaq.type_name}<br/>{tamaq.user_type_name}<br/>{tamaq.time_name}<br/>
+                <Button type="primary" className="button1">Показать</Button></Card>
+              </Col>
+            </Row>
+          </div>
+          )
+          }
+        </div>
         );
     
       }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import img5 from '../pages/images/card.jpg';
 import img6 from '../pages/images/card2.jpg';
-import img7 from '../pages/images/card3.jpeg';
 
 import { Card, Col, Row, Button } from 'antd';
 
