@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 // import ReactDOM from 'react-dom';
 import { Layout } from "antd";
-import HeaderExample from "../components/HeaderExample";
+import { HeaderExample, RandomFood } from "../components";
 import '../index.css';
 
 import Login from "./Login";
@@ -12,14 +12,12 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
 
-
 class App extends Component{
   render(){
     return (
       <div className="App">
       <BrowserRouter>
         <Layout>
-     
           {/* <HeaderExample /> */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
@@ -28,8 +26,7 @@ class App extends Component{
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/welcome" component={Welcome} />  
           <Route exact path="/recipes" component={Recipes} />  
-          
-              
+          <Route exact path="/randomFood" component={RandomFood} />
         </Layout>
       </BrowserRouter>
     </div>
