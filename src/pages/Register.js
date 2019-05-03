@@ -100,7 +100,7 @@ class Register extends Component {
     }
     console.log(user);
 
-    axios.post('http://10.27.177.159/back/api/create_user.php', user)
+    axios.post('http://172.20.10.4/back/api/create_user.php', user)
     .then(res => {
       console.log('asd', user)
       console.log(res);

@@ -96,7 +96,7 @@ class HeaderExample extends Component {
 
     console.log(user)
     
-    axios.post(`http://10.27.177.159/back/api/login.php`, user)
+    axios.post(`http://172.20.10.4/back/api/login.php`, user)
       .then(res => {
         this.setState({ result: res})
         console.log("Data", res)  
