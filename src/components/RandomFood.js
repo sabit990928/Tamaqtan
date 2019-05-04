@@ -30,7 +30,7 @@ class RandomFood extends Component {
               <Row gutter={16}>
       
                 <Col span={8}>
-                  <Card title={data[0].name} bordered={false} className="cards"><img src={img6} className="img5"/>
+                  <Card title={data[0].name} bordered={false} className="cards"><img src={data[0].img_address} className="img5"/>
 
                   <br/>{data[0].recept} <br/>{data[0].type_name}<br/>{data[0].user_type_name}<br/>{data[0].time_name}<br/>
                   <Button type="primary" className="button1">Показать</Button></Card>
