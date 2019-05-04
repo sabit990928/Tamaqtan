@@ -32,7 +32,7 @@ class Recipes extends Component {
         return (
           <div>
           <HeaderExample />
-          <h1>Ваш блюдо</h1> 
+          <h1>Наши блюда</h1> 
           { data.length > 0 && 
           data.map(tamaq => 
           <div style={{ background: '#ECECEC', width: "400px", flexDirection: "row"}} className="card">

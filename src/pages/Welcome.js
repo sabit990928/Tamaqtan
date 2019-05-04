@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Menu, Icon, Button, Layout, Dropdown} from 'antd';
 import { Steps,Modal, Form, Input,  Checkbox,Card } from 'antd';
+import { HeaderExample } from '../components'
 import img1 from './images/salat.jpg';
 import img2 from './images/sup.jpg';
 import img3 from './images/zakuska.jpg';
@@ -85,22 +86,25 @@ class Welcome extends Component {
   render() {
     return (
       <div className="div">
+      {/* <HeaderExample /> */}
         <Container>
         <LeftContainer>
         <PageLink href="#" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
         </LeftContainer>
 
         <RightContainer>    
-          <PageLink href="#" title="Главная">Продукты</PageLink>      
+          {/* <PageLink href="#" title="Главная">Продукты</PageLink>      
           <PageLink href="#" title="Рецепты">Кухни мира</PageLink>
-          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
+          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink> */}
+          <PageLink href="/home" title="Главная">Главная</PageLink>      
+          <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
+          <PageLink href="/randomFood" title="Рандомное блюдо">Рандомное блюдо</PageLink>
           <Dropdown overlay={menu} trigger={['click']}>
               <a className="loginn" href="#">
                 Толегенов Нурбол <Icon type="down" />
               </a>
           </Dropdown>
         </RightContainer>
-
       </Container>
 
       <div className="search">
@@ -109,10 +113,8 @@ class Welcome extends Component {
           title="Поиск"
           onSearch={value => console.log(value)}
           enterButton/>
-
-        
         </div>
- 
+
           <div style={{ background: 'white', padding: '30px' }} className="recept">
     <Row gutter={16}>
       <Col span={6}>

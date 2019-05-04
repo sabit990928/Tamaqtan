@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 import { Link } from "react-router-dom";
+import ReactDOM from 'react-dom';
 
 import { withRouter } from "react-router-dom";
 import './home.css';
-import {  Icon, Modal,Form, Input, Button, Checkbox,} from 'antd';
+import '../pages/welcome.css'
+import {  Icon, Modal,Form, Input, Button, Checkbox, Dropdown, Menu } from 'antd';
 import axios from 'axios';
-import ReactDOM from 'react-dom';
+
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/auth';
 
 const Container = styled.div`
   width: 100%;
@@ -40,10 +44,22 @@ const PageLink = styled.a`
   text-decoration: none;
   color: white;
   padding-right: 15 px;
-  margin-left: 65px;
+  margin-left: 15px;
   
 `;
 
+const menu = (
+  <Menu>
+    <Menu.Item key="0">
+      <a href="/profile" className="link">Мой профиль</a>
+    </Menu.Item>
+    <Menu.Item key="1">
+      <a href="" className="link">Мое меню</a>
+    </Menu.Item>
+    <Menu.Divider />
+    <Menu.Item key="3"><a href="" className="link" href="/home">Выйти</a></Menu.Item>
+  </Menu>
+);
 
 class HeaderExample extends Component {
   
@@ -88,6 +104,7 @@ class HeaderExample extends Component {
     event.preventDefault();
 
     const { email, password, result } = this.state;
+    const { loginUser, history, auth } = this.props;
 
     const user = {
       email: email,
@@ -96,23 +113,18 @@ class HeaderExample extends Component {
 
     console.log(user)
     
-    axios.post(`http://172.20.10.4/back/api/login.php`, user)
-      .then(res => {
-        this.setState({ result: res})
-        console.log("Data", res)  
-        this.props.history.push('/welcome')
-      })
-      .catch(res =>{
-        console.log("Exception", res)
-      }
-      )
+    this.props.loginUser(user, history);
+    this.setState({ visible: false })
   }
 
 
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { visible, loading } = this.state;
+    const { auth } = this.props;
+    const { visible, loading, result } = this.state;
+    // console.log('result: ', typeof result, result)
+    this.props.auth && console.log(this.props.auth, 'user')
     return (
       <Container>
         <LeftContainer>
@@ -123,7 +135,12 @@ class HeaderExample extends Component {
           <PageLink href="/home" title="Главная">Главная</PageLink>      
           <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
           <PageLink href="/randomFood" title="Рандомное блюдо">Рандомное блюдо</PageLink>
-          <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
+          {auth ? <Dropdown overlay={menu} trigger={['click']}>
+              <a className="loginn" href="#">
+                {auth.firstname} <Icon type="down" />
+              </a>
+          </Dropdown> : <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
+          }
         </RightContainer>
         <div>
         
@@ -167,7 +184,7 @@ class HeaderExample extends Component {
               <button type='submit' className="login-form-button">
                 Вход
               </button>
-               <a href="/register">Зарегистрироваться</a>
+              <a href="/register">Зарегистрироваться</a>
             </Form.Item>
       </Form>
         </Modal>
@@ -181,6 +198,10 @@ class HeaderExample extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
 const EnhancedHeader = withRouter(HeaderExample);
 
-export default Form.create()(EnhancedHeader);
+export default connect(mapStateToProps, { loginUser })(Form.create()(EnhancedHeader));
