@@ -3,7 +3,7 @@ import {
   Form, Select, Input, Button, 
 } from 'antd';
 import styled from 'styled-components';
-
+import axios from 'axios';
 const { TextArea } = Input;
 const Option = Select.Option;
 const Container = styled.div`
@@ -16,16 +16,18 @@ const Container = styled.div`
 class Admin extends Component{
       
   state = {
-    tname: null,
+    name: null,
     recept: null,
     img_address: null,
-    time_id: '1', 
+    time_id: null,
+    type_id: null,
+    user_type_id: null
   }
   
 
 
   handleNameChange = (event) =>{
-    this.setState({ tname: event.target.value })
+    this.setState({ name: event.target.value })
   }
   handleReceptChange = (event) =>{
     this.setState({ recept: event.target.value })
@@ -33,27 +35,45 @@ class Admin extends Component{
   handleImgChange = (event) =>{
     this.setState({ img_address: event.target.value })
   }
-  handleChange(time_id) {
-    this.setState({ time_id });
+  handleTimeChange = (event) =>{
+    console.log("event: ", event)
+    this.setState({ time_id: event })
   }
-
+  handleTypeChange = (event) =>{
+    console.log("event: ", event)
+    this.setState({ type_id: event })
+  }
+  handleUserTypeChange = (event) =>{
+    console.log("event: ", event)
+    this.setState({ user_type_id: event })
+  }
 
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { tname, recept, img_address, time_id } = this.state;
+    const { name, recept, img_address, time_id ,type_id,user_type_id } = this.state;
+    const time = parseInt(time_id)
+    const type = parseInt(type_id)
+    const userType = parseInt(user_type_id)
     const tamaq = {
-      tname: tname,
+      name: name,
       recept: recept,
       img_address: img_address,
-      time_id: time_id,
+      time_id: time,
+      type_id: type,
+      user_type_id: userType,
     }
     console.log(tamaq);
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
+    axios.post('http://10.27.177.16/back/api/create_food.php', tamaq)
+    .then(res => {
+      
+      console.log(res);
+      this.props.history.push('/admin')
+    })
+    .catch(res => {
+      console.log('Tamaq add is failed')
+    })
+ 
   }
 
   render(){
@@ -65,9 +85,9 @@ class Admin extends Component{
               <Form labelCol={{ span: 5 }} wrapperCol={{ span: 12 }} onSubmit={this.handleSubmit}>
                   <h4>Добавить блюдо</h4><br/>
                     <Form.Item label="Название:">
-                        {getFieldDecorator('tname', {
+                        {getFieldDecorator('name', {
                             rules: [{ required: true, message: 'Please input your note!' }],})(
-                              <Input name="tname" onChange={this.handleNameChange}/> )}
+                              <Input name="name" onChange={this.handleNameChange}/> )}
                     </Form.Item>
 
                     <Form.Item label="Рецепт:">
@@ -89,7 +109,7 @@ class Admin extends Component{
                                 
                                 name="time_id"
                                 
-                                onChange={this.handleChange}
+                                onChange={this.handleTimeChange}
                             >
                                  <Option value="1">Завтрак</Option>
                                  <Option value="2">Обед</Option>
@@ -101,9 +121,55 @@ class Admin extends Component{
                          
                        </Form.Item>
 
-                        <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
-                          <Button type="submit" htmlType="submit">Submit</Button>
-                        </Form.Item>
+                       
+
+                        <Form.Item label="Тип еды:">
+                        
+                        <Select
+                            placeholder="Выберите тип еды"
+                            
+                            name="type_id"
+                            
+                            onChange={this.handleTypeChange}
+                        >
+                             <Option value="1">Суп</Option>
+                             <Option value="2">Жаренное</Option>
+                             <Option value="3">Тушонное</Option>
+                             <Option value="4">Напитки</Option>
+                             <Option value="5">Салаты</Option>
+                             <Option value="6">Кашы</Option>
+                        </Select>
+                     
+                   </Form.Item>
+
+                   
+                   <Form.Item label="Тип пользователя:">
+                        
+                        <Select
+                            placeholder="Выберите тип пользователя"
+                            
+                            name="user_type_id"
+                            
+                            onChange={this.handleUserTypeChange}
+                        >
+                             <Option value="1">Спорт</Option>
+                             <Option value="2">Диета</Option>
+                             <Option value="3">Беременная</Option>
+                             <Option value="4">Больные</Option>
+                             <Option value="5">Ежедневные</Option>
+                             
+                        </Select>
+                     
+                   </Form.Item>
+
+
+                   
+            
+
+                    <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
+                      <Button type="submit" htmlType="submit">Submit</Button>
+                    </Form.Item>
+                    
                </Form>
                </Container>
  
