@@ -25,6 +25,7 @@
                 "id" => $id,
                 "name" => $name,
                 "recept" => html_entity_decode($recept),
+                "img_address" => html_entity_decode($img_address),
                 "time_name" => $time_name,
                 "type_name" => $type_name,
                 "user_type_name" => $user_type_name

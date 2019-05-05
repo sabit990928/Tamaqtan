@@ -1,6 +1,6 @@
 <?php
 
-header("Access-Control-Allow-Origin: *");
+ header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
@@ -20,6 +20,7 @@ $data = json_decode(file_get_contents("php://input"));
 if(
     !empty($data->name) &&
     !empty($data->recept) &&
+    !empty($data->img_address) &&
     !empty($data->time_id) &&
     !empty($data->type_id) &&
     !empty($data->user_type_id) 
@@ -27,6 +28,7 @@ if(
 
     $food->name = $data->name;
     $food->recept = $data->recept;
+    $food->img_address = $data->img_address;
     $food->time_id = $data->time_id;
     $food->type_id = $data->type_id;
     $food->user_type_id = $data->user_type_id;

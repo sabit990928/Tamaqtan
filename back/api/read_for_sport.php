@@ -10,7 +10,7 @@
     
     $food = new Food($db);
 
-    $stmt = $food->get_random();
+    $stmt = $food->read_sport();
     $num = $stmt->rowCount();
     
     if($num>0){

@@ -18,7 +18,6 @@ class User{
     public function __construct($db){
         $this->conn = $db;
     }
-
  // функция для создания юзера
 function create(){
  
@@ -37,7 +36,6 @@ function create(){
     $this->lastname=htmlspecialchars(strip_tags($this->lastname));
     $this->email=htmlspecialchars(strip_tags($this->email));
     $this->password=htmlspecialchars(strip_tags($this->password));
-
     $stmt->bindParam(':firstname', $this->firstname);
     $stmt->bindParam(':lastname', $this->lastname);
     $stmt->bindParam(':email', $this->email);
@@ -53,11 +51,9 @@ function create(){
     return false;
 }
  
-
 //Проверка есть ли такой юзер
 function emailExists(){
  
-
     $query = "SELECT id, firstname, lastname, password, is_user
             FROM " . $this->table_name . "
             WHERE email = ?
