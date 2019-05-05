@@ -8,7 +8,6 @@ class RandomFood extends Component {
     data: []
   }
   fetchRandomFood = () => {
-    // axios.get(`http://172.20.10.4/back/api/get_random_food.php`)
     axios.get(`http://10.27.177.16/back/api/get_random_food.php`)
       .then(res => {
         const data = res.data.records;

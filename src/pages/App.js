@@ -11,6 +11,7 @@ import Welcome from "./Welcome";
 import Home from "./Home";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
+import Admin from "./Admin";
 
 class App extends Component{
   render(){
@@ -27,6 +28,7 @@ class App extends Component{
           <Route exact path="/welcome" component={Welcome} />  
           <Route exact path="/recipes" component={Recipes} />  
           <Route exact path="/randomFood" component={RandomFood} />
+          <Route exact path="/admin" component={Admin} />
         </Layout>
       </BrowserRouter>
     </div>
