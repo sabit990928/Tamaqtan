@@ -10,7 +10,6 @@ import img6 from './images/card2.jpg';
 import img7 from './images/card3.jpeg';
 import './home.css';
 import styled from 'styled-components';
-import HeaderExample from "../components/HeaderExample";
 import { Carousel } from 'antd';
 import { Steps, Button, message, Modal, Input, Checkbox } from 'antd';
 import { Card, Col, Row } from 'antd';
@@ -75,7 +74,6 @@ class Home extends Component {
     const { current } = this.state;
     return (
       <div className="div"> 
-        <HeaderExample />
         <div className="search">
           <Search
           placeholder="Введите название блюда или ингредиента"

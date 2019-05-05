@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
-import { Slider } from '../components';
-import HeaderExample from "../components/HeaderExample";
 import {
-   Form,Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Select, Button, AutoComplete
 } from 'antd';
-
-
 
 const Container = styled.div`
   display: flex;
@@ -21,8 +17,7 @@ const Container = styled.div`
 
 const StyledForm = styled(Form)`
   width: 550px;
-`
-
+`;
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
@@ -193,21 +188,14 @@ class Register extends Component {
 
     return (
       <div>
-        <HeaderExample />
-      
       <Container>
-        
-
         <StyledForm {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item
           label="Фамилия:"
-       
         >
           {getFieldDecorator('firstname', {
             rules: [{
               type: 'text', message: 'The input is not valid First Name!',
-            
-              
             }, {
               required: true, message: 'Please input your First Name!',
               
@@ -263,8 +251,6 @@ class Register extends Component {
       
       </Container>
       </div>
-   
-
     );
   }
 }

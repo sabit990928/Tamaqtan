@@ -24,18 +24,7 @@ class Login extends Component {
   state = {
     email: '',
     password: '',
-    result: null
   };
-
-  // componentDidMount() {
-  //   axios.get('http://10.8.130.113/tamaqtan/test.php')
-  //     .then(res => {
-  //   console.log("persons here: ", res)
-  //     })
-  //     .catch(res => {
-  //       console.log(res.data)
-  //     })
-  // }
 
   handleEmailChange = (event) =>{
     this.setState({ email: event.target.value })
@@ -48,18 +37,15 @@ class Login extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password, result } = this.state;
+    const { email, password } = this.state;
 
     const user = {
       email: email,
       password: password
     }
     
-// http://localhost/rest-api-authentication-example/api/login.php
-    // axios.post(`http://10.8.130.113/tamaqtan/test.php`, { user })
     axios.post(`http://172.20.10.4/back/api/login.php`, user)
       .then(res => {
-        this.setState({ result: res})
         console.log("Data", res)  
         this.props.history.push('/welcome')
       })

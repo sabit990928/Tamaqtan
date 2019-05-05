@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { Menu, Icon, Button, Layout, Dropdown} from 'antd';
 import { Steps,Modal, Form, Input,  Checkbox,Card } from 'antd';
-import { HeaderExample } from '../components'
 import img1 from './images/salat.jpg';
 import img2 from './images/sup.jpg';
 import img3 from './images/zakuska.jpg';
@@ -86,7 +85,6 @@ class Welcome extends Component {
   render() {
     return (
       <div className="div">
-      {/* <HeaderExample /> */}
         <Container>
         <LeftContainer>
         <PageLink href="#" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    

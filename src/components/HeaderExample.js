@@ -85,7 +85,6 @@ class HeaderExample extends Component {
     this.setState({ visible: false });
   }
 
-
   state = {
     email: '',
     password: '',
@@ -116,8 +115,6 @@ class HeaderExample extends Component {
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }
-
-
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -191,9 +188,6 @@ class HeaderExample extends Component {
         
       </div>  
       </Container>
-
-
-    
     );
   }
 }

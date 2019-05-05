@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import img6 from '../pages/images/card2.jpg';
-
 import { Card, Col, Row, Button } from 'antd';
-
-import HeaderExample from './HeaderExample'
 
 class RandomFood extends Component {
   state = {
     data: []
   }
   fetchRandomFood = () => {
-    axios.get(`http://172.20.10.4/back/api/get_random_food.php`)
+    // axios.get(`http://172.20.10.4/back/api/get_random_food.php`)
+    axios.get(`http://10.27.177.16/back/api/get_random_food.php`)
       .then(res => {
         const data = res.data.records;
         console.log("data: ", res.data.records)
@@ -23,7 +20,6 @@ class RandomFood extends Component {
         const { data } = this.state;
         return (
           <div>
-            <HeaderExample />
             <Button onClick={this.fetchRandomFood}>Найти рандомное блюдо</Button>
             { data.length > 0 && <div style={{ background: '#ECECEC'}} className="card">
               <h1>Ваше блюдо</h1> 
