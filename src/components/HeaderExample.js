@@ -110,7 +110,7 @@ class HeaderExample extends Component {
     }
 
     console.log(user)
-    this.props.lo
+    
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }
