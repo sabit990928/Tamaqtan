@@ -22,29 +22,7 @@ const StyledForm = styled(Form)`
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
-const residences = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
+
 
 class Register extends Component {
 
@@ -89,10 +67,7 @@ class Register extends Component {
       email: email,
       password: password
     }
-    let headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'JWT fefege...' 
-    }
+
     console.log(user);
 
     axios.post('http://172.20.10.4/back/api/create_user.php', user)

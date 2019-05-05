@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import ReactDOM from 'react-dom';
-
-import img7 from './images/card3.jpeg';
 import './home.css';
 import './recipes.css';
-import styled from 'styled-components';
-import { Carousel } from 'antd';
-import { Steps, Button, message, Modal, Input, Checkbox } from 'antd';
-import { Card, Col, Row, List, Avatar,Icon } from 'antd';
+import {Button} from 'antd';
+import { Card, Col, Row} from 'antd';
 import axios from 'axios';
 
 
