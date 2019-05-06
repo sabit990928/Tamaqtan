@@ -85,26 +85,6 @@ class Welcome extends Component {
   render() {
     return (
       <div className="div">
-        <Container>
-        <LeftContainer>
-        <PageLink href="#" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
-        </LeftContainer>
-
-        <RightContainer>    
-          {/* <PageLink href="#" title="Главная">Продукты</PageLink>      
-          <PageLink href="#" title="Рецепты">Кухни мира</PageLink>
-          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink> */}
-          <PageLink href="/home" title="Главная">Главная</PageLink>      
-          <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
-          <PageLink href="/randomFood" title="Рандомное блюдо">Рандомное блюдо</PageLink>
-          <Dropdown overlay={menu} trigger={['click']}>
-              <a className="loginn" href="#">
-                Толегенов Нурбол <Icon type="down" />
-              </a>
-          </Dropdown>
-        </RightContainer>
-      </Container>
-
       <div className="search">
           <Search
           placeholder="Введите название блюда или ингредиента"
