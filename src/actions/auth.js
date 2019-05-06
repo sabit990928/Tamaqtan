@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { FETCH_USER } from './types';
+import { FETCH_USER, LOGOUT_USER } from './types';
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({ type: FETCH_USER, payload: user });
@@ -13,8 +13,8 @@ const headers = { headers: { Authorization: `Bearer ${token}` } };
 
 
 export const loginUser = (userData, history) => dispatch => {
-  // axios.post(`http://172.20.10.4/back/api/login.php`, userData)  //  Bereke
-  axios.post(`http://10.27.177.16/back/api/login.php`, userData) //  library
+  axios.post(`http://localhost/back/api/login.php`, userData)  //  Bereke
+  // axios.post(`http://10.27.177.21/back/api/login.php`, userData) //  library
     .then(res => {
       const newToken = res.data ? res.data.jwt : '';
       if (newToken.length > 0) {
@@ -29,3 +29,8 @@ export const loginUser = (userData, history) => dispatch => {
     }
     )
 }
+
+export const logoutUser = (dispatch) => {
+  localStorage.removeItem('token');
+  dispatch({ type: LOGOUT_USER });
+};
