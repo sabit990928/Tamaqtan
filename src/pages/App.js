@@ -12,7 +12,7 @@ import Home from "./Home";
 import Profile from "./Profile";
 import Recipes from "./Recipes";
 import Admin from "./Admin";
-
+import StaticMenu from "./StaticMenu";
 class App extends Component{
   render(){
     return (
@@ -29,6 +29,7 @@ class App extends Component{
           <Route exact path="/recipes" component={Recipes} />  
           <Route exact path="/randomFood" component={RandomFood} />
           <Route exact path="/admin" component={Admin} />
+          <Route exact path="/staticmenu" component={StaticMenu} />
         </Layout>
       </BrowserRouter>
     </div>
