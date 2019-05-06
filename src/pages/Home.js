@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { withRouter, Redirect } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import { Layout} from 'antd';
+
 import img1 from './images/1.jpg';
 import img2 from './images/2.jpg';
 import img3 from './images/3.jpg';
@@ -10,53 +9,19 @@ import img5 from './images/card.jpg';
 import img6 from './images/card2.jpg';
 import img7 from './images/card3.jpeg';
 import './home.css';
-import styled from 'styled-components';
+
 import { Carousel } from 'antd';
-import { Steps, Button, message, Modal, Input, Checkbox } from 'antd';
+import { Steps, Button,Input} from 'antd';
 import { Card, Col, Row } from 'antd';
 import StaticMenu from './StaticMenu';
 const Step = Steps.Step;
 const Search = Input.Search;
 const {
-  Header, Footer, Sider, Content,
+   Footer
 } = Layout;
 
 
-const Container = styled.div`
-  width: 100%;
-  height: 60px;
-  background-color: #2E9AFE;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-`;
 
-const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  left: 40px;
-`;
-
-const RightContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  align-items: center;
-  width: 70%;
-`;
-
-const PageLink = styled.a`
-  padding-right: 10px;  
-  font-size: 15px;
-  text-decoration: none;
-  color: white;
-  padding-right: 15 px;
-  margin-left: 65px;
-  
-`;
 
 
 class Home extends Component {

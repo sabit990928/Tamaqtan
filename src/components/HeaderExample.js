@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
-import ReactDOM from 'react-dom';
+
 
 import { withRouter } from "react-router-dom";
 import './home.css';
 import '../pages/welcome.css'
-import {  Icon, Modal,Form, Input, Button, Checkbox, Dropdown, Menu } from 'antd';
-import axios from 'axios';
+import {  Icon, Modal,Form, Input,  Checkbox, Dropdown, Menu } from 'antd';
+
 
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
@@ -113,7 +112,7 @@ class HeaderExample extends Component {
     }
 
     console.log(user)
-    
+    this.props.lo
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }
