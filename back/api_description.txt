@@ -1,0 +1,44 @@
+api and functions
+read_for_diet  / sport / ill / berem / usuall - вывод всех блюд по категориям 
+возврощает - 
+		"id" 
+                "name"
+                "recept"
+                "img_address" 
+                "time_name" 
+                "type_name"
+                "user_type_name"
+
+get_random_menu - рандомное меню 
+возврощает -  	
+		"id" 
+                "f1_name"
+                "f1_id" 
+                "f2_name"
+                "f2_id" 
+                "f3_name"
+                "f3_id" 
+                "type_name"
+
+menu_for_diet / sport / ill / berem / usuall - вывод на один день рандом меню по категориям 
+возврощает -  	
+		"id" 
+                "f1_name"
+                "f1_id" 
+                "f2_name"
+                "f2_id" 
+                "f3_name"
+                "f3_id" 
+                "type_name"
+
+getMenuSport / sport / ill / berem / usuall - вывод всех типов меню по категориям 
+возврощает -
+"id" 
+                "f1_name"
+                "f1_id" 
+                "f2_name"
+                "f2_id" 
+                "f3_name"
+                "f3_id" 
+                "type_name"
+а остальные ф-й мы реализовали
