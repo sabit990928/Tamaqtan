@@ -159,7 +159,7 @@ class HeaderExample extends Component {
                 {auth.firstname} <Icon type="down" />
               </a>
             </Dropdown>
-            <PageLink title="Выход" className="logout" onClick={this.handleLogout}>Выход</PageLink>
+            
           </div>
           : <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
           }

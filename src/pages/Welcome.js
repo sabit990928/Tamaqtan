@@ -63,11 +63,13 @@ const { Meta } = Card;
 class Welcome extends Component {
   state = {
     collapsed: false,
+    redirect: false,
+    type: null
   }
 
   setRedirect = () => {
     this.setState({
-      redirect: true
+      redirect: true,
     })
   }
   renderRedirect = () => {
@@ -76,11 +78,43 @@ class Welcome extends Component {
     }
   }
 
-  toggleCollapsed = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+  handleSport = () => {
+    this.setState({ type: "sport", collapsed: 
+    !this.state.collapsed,
+    redirect: true, })
   }
+
+  handleIll = () => {
+    this.setState({ type: "ill" })
+  }
+
+  handleDiet = () => {
+    this.setState({ type: "diet", collapsed: 
+    !this.state.collapsed,
+    redirect: true,
+  })
+  }
+
+  handleUsuall = () => {
+    this.setState({ type: "usual", collapsed: 
+    !this.state.collapsed,
+    redirect: true,
+  })
+  }
+
+  handleBerem = () => {
+    this.setState({ type: "berem", collapsed: 
+    !this.state.collapsed,
+    redirect: true,
+  })
+  }
+
+  // toggleCollapsed = () => {
+  //   this.setState({
+  //     collapsed: 
+  //     !this.state.collapsed,
+  //   });
+  // }
   render() {
     return (
       <div className="div">
@@ -98,8 +132,9 @@ class Welcome extends Component {
           <div style={{ background: 'white', padding: '30px' }} className="recept">
         <Row gutter={16}>
           <Col span={6}>
-            <a href="/menu">
+            {/* <a href="/menu"> */}
             <Card 
+              onClick={this.handleSport}
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={img1} className="suret" />}
@@ -109,7 +144,7 @@ class Welcome extends Component {
                   title="Спортсменам"                  
                 />
           </Card>
-          </a>
+          {/* </a> */}
       </Col>
       <Col span={6}>
       <Card
