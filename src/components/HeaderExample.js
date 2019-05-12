@@ -88,7 +88,9 @@ class HeaderExample extends Component {
     password: '',
   };
 
-  handleLogout = () => {
+  handleLogout = (event) => {
+    event.preventDefault();
+
     this.props.logoutUser();
   }
 
@@ -112,7 +114,6 @@ class HeaderExample extends Component {
     }
 
     console.log(user)
-    this.props.lo
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }

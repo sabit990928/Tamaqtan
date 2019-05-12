@@ -21,7 +21,7 @@ export const loginUser = (userData, history) => dispatch => {
         localStorage.setItem('token', newToken);
       }
       console.log("Data", res.data);
-      history.push('/randomFood')
+      history.push('/welcome')
       return loginUserSuccess(dispatch, res.data)
     })
     .catch(res =>{

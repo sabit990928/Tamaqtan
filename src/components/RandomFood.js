@@ -8,7 +8,7 @@ class RandomFood extends Component {
     data: []
   }
   fetchRandomFood = () => {
-    axios.get(`http://10.27.177.16/back/api/get_random_food.php`)
+    axios.get(`http://localhost/back/api/get_random_food.php`)
       .then(res => {
         const data = res.data.records;
         console.log("data: ", res.data.records)
@@ -19,7 +19,7 @@ class RandomFood extends Component {
         const { data } = this.state;
         return (
           <div>
-            <Button onClick={this.fetchRandomFood}>Найти рандомное блюдо</Button>
+            <Button onClick={this.fetchRandomFood}>Найти случайное блюдо</Button>
             { data.length > 0 && <div style={{ background: '#ECECEC'}} className="card">
               <h1>Ваше блюдо</h1> 
               <Row gutter={16}>
@@ -27,7 +27,7 @@ class RandomFood extends Component {
                 <Col span={8}>
                   <Card title={data[0].name} bordered={false} className="cards"><img src={data[0].img_address} className="img5"/>
 
-                  <br/>{data[0].recept} <br/>{data[0].type_name}<br/>{data[0].user_type_name}<br/>{data[0].time_name}<br/>
+                  <br/>{data[0].type_name}<br/>{data[0].user_type_name}<br/>{data[0].time_name}<br/>
                   <Button type="primary" className="button1">Показать</Button></Card>
                 </Col>
             

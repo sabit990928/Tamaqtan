@@ -60,7 +60,7 @@ class Admin extends Component{
       user_type_id: userType,
     }
     console.log(tamaq);
-    axios.post('http://10.27.177.16/back/api/create_food.php', tamaq)
+    axios.post('http://localhost/back/api/create_food.php', tamaq)
     .then(res => {
       console.log(res);
       this.props.history.push('/admin')
