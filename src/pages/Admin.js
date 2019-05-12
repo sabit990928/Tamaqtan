@@ -12,9 +12,7 @@ const Container = styled.div`
   text-align:center;
 `;
 
-
 class Admin extends Component{
-      
   state = {
     name: null,
     recept: null,
@@ -23,8 +21,6 @@ class Admin extends Component{
     type_id: null,
     user_type_id: null
   }
-  
-
 
   handleNameChange = (event) =>{
     this.setState({ name: event.target.value })
@@ -64,16 +60,14 @@ class Admin extends Component{
       user_type_id: userType,
     }
     console.log(tamaq);
-    axios.post('http://10.27.177.16/back/api/create_food.php', tamaq)
+    axios.post('http://localhost/back/api/create_food.php', tamaq)
     .then(res => {
-      
       console.log(res);
       this.props.history.push('/admin')
     })
     .catch(res => {
-      console.log('Tamaq add is failed')
+      console.log('Tamaq add is failed ', res)
     })
- 
   }
 
   render(){
@@ -96,7 +90,7 @@ class Admin extends Component{
                               <TextArea placeholder="" name="recept" autosize={{ minRows: 2, maxRows: 6 }} onChange={this.handleReceptChange}/> )}
                     </Form.Item>
 
-                     <Form.Item label="Изображение (url):">
+                    <Form.Item label="Изображение (url):">
                         {getFieldDecorator('img_address', {
                             rules: [{ required: true, message: 'Please input your note!' }],})(
                               <Input name="img_address" onChange={this.handleImgChange}/>)}
@@ -111,17 +105,15 @@ class Admin extends Component{
                                 
                                 onChange={this.handleTimeChange}
                             >
-                                 <Option value="1">Завтрак</Option>
-                                 <Option value="2">Обед</Option>
-                                 <Option value="3">Ужин</Option>
-                                 <Option value="4">Поздний завтрак</Option>
-                                 <Option value="5">Полдник</Option>
-                                 <Option value="6">Поздний ужин</Option>
+                                <Option value="1">Завтрак</Option>
+                                <Option value="2">Обед</Option>
+                                <Option value="3">Ужин</Option>
+                                <Option value="4">Поздний завтрак</Option>
+                                <Option value="5">Полдник</Option>
+                                <Option value="6">Поздний ужин</Option>
                             </Select>
-                         
-                       </Form.Item>
-
-                       
+                        
+                      </Form.Item>
 
                         <Form.Item label="Тип еды:">
                         
@@ -132,18 +124,18 @@ class Admin extends Component{
                             
                             onChange={this.handleTypeChange}
                         >
-                             <Option value="1">Суп</Option>
-                             <Option value="2">Жаренное</Option>
-                             <Option value="3">Тушонное</Option>
-                             <Option value="4">Напитки</Option>
-                             <Option value="5">Салаты</Option>
-                             <Option value="6">Кашы</Option>
+                            <Option value="1">Суп</Option>
+                            <Option value="2">Жаренное</Option>
+                            <Option value="3">Тушонное</Option>
+                            <Option value="4">Напитки</Option>
+                            <Option value="5">Салаты</Option>
+                            <Option value="6">Кашы</Option>
                         </Select>
-                     
-                   </Form.Item>
+                    
+                  </Form.Item>
 
-                   
-                   <Form.Item label="Тип пользователя:">
+                  
+                  <Form.Item label="Тип пользователя:">
                         
                         <Select
                             placeholder="Выберите тип пользователя"
@@ -152,29 +144,22 @@ class Admin extends Component{
                             
                             onChange={this.handleUserTypeChange}
                         >
-                             <Option value="1">Спорт</Option>
-                             <Option value="2">Диета</Option>
-                             <Option value="3">Беременная</Option>
-                             <Option value="4">Больные</Option>
-                             <Option value="5">Ежедневные</Option>
-                             
+                            <Option value="1">Спорт</Option>
+                            <Option value="2">Диета</Option>
+                            <Option value="3">Беременная</Option>
+                            <Option value="4">Больные</Option>
+                            <Option value="5">Ежедневные</Option>
+                            
                         </Select>
-                     
-                   </Form.Item>
-
-
-                   
-            
+                    
+                  </Form.Item>
 
                     <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
                       <Button type="submit" htmlType="submit">Submit</Button>
                     </Form.Item>
                     
-               </Form>
-               </Container>
- 
-  
- 
+              </Form>
+              </Container>
       </div>
     )
   }

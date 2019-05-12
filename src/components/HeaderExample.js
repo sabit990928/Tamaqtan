@@ -9,7 +9,7 @@ import {  Icon, Modal,Form, Input,  Checkbox, Dropdown, Menu } from 'antd';
 
 
 import { connect } from 'react-redux';
-import { loginUser } from '../actions/auth';
+import { loginUser, logoutUser } from '../actions/auth';
 
 const Container = styled.div`
   width: 100%;
@@ -38,12 +38,11 @@ const RightContainer = styled.div`
 `;
 
 const PageLink = styled.a`
-  padding-right: 10px;  
+  padding-right: 20px;  
   font-size: 15px;
   text-decoration: none;
   color: white;
-  padding-right: 15 px;
-  margin-left: 15px;
+  margin-left: 20px;
   
 `;
 
@@ -87,8 +86,13 @@ class HeaderExample extends Component {
   state = {
     email: '',
     password: '',
-    result: null
   };
+
+  handleLogout = (event) => {
+    event.preventDefault();
+
+    this.props.logoutUser();
+  }
 
   handleEmailChange = (event) =>{
     this.setState({ email: event.target.value })
@@ -110,7 +114,6 @@ class HeaderExample extends Component {
     }
 
     console.log(user)
-    
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }
@@ -118,24 +121,47 @@ class HeaderExample extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     const { auth } = this.props;
-    const { visible, loading, result } = this.state;
-    // console.log('result: ', typeof result, result)
+    const { visible, loading } = this.state;
     this.props.auth && console.log(this.props.auth, 'user')
+    console.log(auth, 'auth')
     return (
       <Container>
         <LeftContainer>
         <PageLink href="/home" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
         </LeftContainer>
 
-        <RightContainer>    
-          <PageLink href="/home" title="Главная">Главная</PageLink>      
-          <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
-          <PageLink href="/randomFood" title="Рандомное блюдо">Рандомное блюдо</PageLink>
-          {auth ? <Dropdown overlay={menu} trigger={['click']}>
-              <a className="loginn" href="#">
+        <RightContainer>  
+          {
+            auth && auth.is_user.localeCompare("2") === 0 ?
+            <div>
+              <PageLink href="/tamaq" title="Блюдо">Блюдо</PageLink>      
+              <PageLink href="/menu" title="Меню">Меню</PageLink>   
+              <PageLink href="/clients" title="Клиенты">Клиенты</PageLink>   
+            </div>
+          :
+            <div>
+              <PageLink href="/home" title="Главная">Главная</PageLink>      
+              <PageLink href="/randomFood" title="Случайное блюдо">Случайное блюдо</PageLink>
+            </div>
+          }
+          {
+            auth && auth.is_user.localeCompare("1") === 0 && <div>
+            
+              <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
+
+            </div>
+
+          }
+
+          {auth ? <div style={{ "display": "flex", "flexDirection": "row"}}>
+            <Dropdown overlay={menu} trigger={['click']}>
+              <a className="loginn" href="#" style={{ 'marginLeft': '500px'}}>
                 {auth.firstname} <Icon type="down" />
               </a>
-          </Dropdown> : <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
+            </Dropdown>
+            <PageLink title="Выход" className="logout" onClick={this.handleLogout}>Выход</PageLink>
+          </div>
+          : <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
           }
         </RightContainer>
         <div>
@@ -197,4 +223,4 @@ const mapStateToProps = (state) => ({
 
 const EnhancedHeader = withRouter(HeaderExample);
 
-export default connect(mapStateToProps, { loginUser })(Form.create()(EnhancedHeader));
+export default connect(mapStateToProps, { loginUser, logoutUser })(Form.create()(EnhancedHeader));

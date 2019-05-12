@@ -44,7 +44,7 @@ class Login extends Component {
       password: password
     }
     
-    axios.post(`http://172.20.10.4/back/api/login.php`, user)
+    axios.post(`http://localhost/back/api/login.php`, user)
       .then(res => {
         console.log("Data", res)  
         this.props.history.push('/welcome')
