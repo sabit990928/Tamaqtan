@@ -135,18 +135,18 @@ class HeaderExample extends Component {
             auth && auth.is_user.localeCompare("2") === 0 ?
             <div>
               <PageLink href="/tamaq" title="Блюдо">Блюдо</PageLink>      
-              <PageLink href="/menu" title="Меню">Меню</PageLink>   
-              <PageLink href="/clients" title="Клиенты">Клиенты</PageLink>   
+              {/* <PageLink href="/menu" title="Меню">Меню</PageLink>   
+              <PageLink href="/clients" title="Клиенты">Клиенты</PageLink>    */}
             </div>
           :
-            <div>
-              <PageLink href="/home" title="Главная">Главная</PageLink>      
+          <div>
               <PageLink href="/randomFood" title="Случайное блюдо">Случайное блюдо</PageLink>
             </div>
           }
           {
             auth && auth.is_user.localeCompare("1") === 0 && <div>
             
+            <PageLink href="/welcome" title="Главная">Категорий</PageLink>      
               <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
 
             </div>
