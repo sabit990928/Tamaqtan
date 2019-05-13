@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import styled from 'styled-components';
-import { Slider } from '../components';
-import HeaderExample from "../components/HeaderExample";
 import {
-   Form,Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+  Form, Input, Select, Button, AutoComplete
 } from 'antd';
-
-
 
 const Container = styled.div`
   display: flex;
@@ -21,35 +17,12 @@ const Container = styled.div`
 
 const StyledForm = styled(Form)`
   width: 550px;
-`
-
+`;
 
 const { Option } = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
-const residences = [{
-  value: 'zhejiang',
-  label: 'Zhejiang',
-  children: [{
-    value: 'hangzhou',
-    label: 'Hangzhou',
-    children: [{
-      value: 'xihu',
-      label: 'West Lake',
-    }],
-  }],
-}, {
-  value: 'jiangsu',
-  label: 'Jiangsu',
-  children: [{
-    value: 'nanjing',
-    label: 'Nanjing',
-    children: [{
-      value: 'zhonghuamen',
-      label: 'Zhong Hua Men',
-    }],
-  }],
-}];
+
 
 class Register extends Component {
 
@@ -94,13 +67,10 @@ class Register extends Component {
       email: email,
       password: password
     }
-    let headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'JWT fefege...' 
-    }
+
     console.log(user);
 
-    axios.post('http://10.27.177.159/back/api/create_user.php', user)
+    axios.post('http://localhost/back/api/create_user.php', user)
     .then(res => {
       console.log('asd', user)
       console.log(res);
@@ -193,21 +163,14 @@ class Register extends Component {
 
     return (
       <div>
-        <HeaderExample />
-      
       <Container>
-        
-
         <StyledForm {...formItemLayout} onSubmit={this.handleSubmit}>
         <Form.Item
           label="Фамилия:"
-       
         >
           {getFieldDecorator('firstname', {
             rules: [{
               type: 'text', message: 'The input is not valid First Name!',
-            
-              
             }, {
               required: true, message: 'Please input your First Name!',
               
@@ -263,8 +226,6 @@ class Register extends Component {
       
       </Container>
       </div>
-   
-
     );
   }
 }

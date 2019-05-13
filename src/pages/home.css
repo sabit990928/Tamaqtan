@@ -58,23 +58,30 @@
 }
 
 .card{
-  height: 440px;
-  padding: '30px';
+  height: 540px;
+  padding: '15px';
   margin-top: 20px;
   padding-top: 10px;
 }
 
 .cards{
   width: 350px;
-  margin-left: 43px;
-  height: 375px;
+  margin-left: 20px;
+  height: 420px;
+  font-size: 18px;
+}
+
+.ant-card-head-title{
+  font-size: 20px
 }
 
 .img5{
   height: 200px;
-  width: 200px;
+  width: 100%;
   
 }
 .button1{
-  margin-top: 10px;
+  position: absolute;
+  bottom: 15px;
+  right: 120px;
 }
