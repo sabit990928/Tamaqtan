@@ -15,6 +15,7 @@ import Admin from "./Admin";
 import StaticMenu from "./StaticMenu";
 import Menus from "./Menus";
 import Recept from "./Recept";
+import OneFood from "./OneFood";
 class App extends Component{
   render(){
     return (
@@ -34,6 +35,7 @@ class App extends Component{
           <Route exact path="/welcome" component={Welcome} />  
           <Route exact path="/menu" component={Menus} />
           <Route exact path="/recept"  component={Recept} />
+          <Route exact path="/food/:id"  component={OneFood} />
         </Layout>
       </BrowserRouter>
     </div>

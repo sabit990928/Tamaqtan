@@ -4,7 +4,7 @@ import './recipes.css';
 import {Button} from 'antd';
 import { Card, Col, Row} from 'antd';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 const arrayChunk = (array, chunkSize) => Array(Math.ceil(array.length / chunkSize))
   .fill()
@@ -37,7 +37,7 @@ class Recipes extends Component {
       return <Redirect to={{
         pathname: '/recept',
         tamaq: {
-
+          
         }
       }} />
     }
@@ -62,7 +62,8 @@ class Recipes extends Component {
                 <Col>
                   <Card title={tamaq.name} bordered={false} className="cards"><img src={tamaq.img_address} className="img5"/>
                   <br/>{tamaq.type_name}<br/>{tamaq.user_type_name}<br/>{tamaq.time_name}<br/>
-                  <Button type="primary" className="button1" onClick={this.setRedirect}>Показать</Button></Card>
+                  <Link to={`/food/${tamaq.id}`}
+                    ><Button type="primary" className="button1" >Показать</Button></Link></Card>
                 </Col>
               )
               }

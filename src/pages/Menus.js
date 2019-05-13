@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 import { Table } from 'antd';
 
 const columns = [
-  { title: 'Завтрак', dataIndex: 'f1_name', key: 'name' },
-  { title: 'Обед', dataIndex: 'f2_name', key: 'age' },
-  { title: 'Ужин', dataIndex: 'f3_name', key: 'address' },
+  { title: 'Завтрак', dataIndex: 'f1_name', key: 'name',
+    render: (text, {f1_id}) => <Link to={`/food/${f1_id}`}
+    >{text}</Link>
+    
+},
+  { title: 'Обед', dataIndex: 'f2_name', key: 'age', 
+  render: (text, {f2_id}) => <Link to={`/food/${f2_id}`}
+  >{text}</Link>
+},
+  { title: 'Ужин', dataIndex: 'f3_name', key: 'address',     
+  render: (text, {f3_id}) => <Link to={`/food/${f3_id}`}
+  >{text}</Link> },
 ];
 
 class Menus extends Component{
