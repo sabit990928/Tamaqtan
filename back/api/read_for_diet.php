@@ -10,9 +10,7 @@
     
     $food = new Food($db);
 
-    $food->id = isset($_GET['id']) ? $_GET['id'] : die();
-    $stmt = $food->readOne();
-   // $stmt = $food->get_random();
+    $stmt = $food->read_diet();
     $num = $stmt->rowCount();
     
     if($num>0){
