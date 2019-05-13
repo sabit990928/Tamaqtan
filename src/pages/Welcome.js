@@ -74,18 +74,26 @@ class Welcome extends Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/menu'  />
+
+      this.props.history.push({
+        pathname:"/menu",
+        state:{
+            type: this.state.type
+        }
+      });
     }
   }
 
   handleSport = () => {
     this.setState({ type: "sport", collapsed: 
     !this.state.collapsed,
-    redirect: true, })
+    redirect: true })
   }
 
   handleIll = () => {
-    this.setState({ type: "ill" })
+    this.setState({ type: "ill",collapsed: 
+    !this.state.collapsed,
+    redirect: true })
   }
 
   handleDiet = () => {
@@ -120,14 +128,6 @@ class Welcome extends Component {
       <div className="div">
         {this.renderRedirect()}
 
-      {/* <div className="search">
-          <Search
-          placeholder="Введите название блюда или ингредиента"
-          title="Поиск"
-          onSearch={value => console.log(value)}
-          enterButton/>
-        </div> */}
-
           <h2>Меню по категориям</h2>
           <div style={{ background: 'white', padding: '30px' }} className="recept">
         <Row gutter={16}>
@@ -148,6 +148,8 @@ class Welcome extends Component {
       </Col>
       <Col span={6}>
       <Card
+                onClick={this.handleBerem}
+
                 hoverable
                 style={{ width: 240}}
                 cover={<img alt="example" src={img2} className="suret"/>}
@@ -158,9 +160,11 @@ class Welcome extends Component {
                   title="Беременным"                  
                 />
           </Card>
-      </Col>
-      <Col span={6}>
-      <Card
+          </Col>
+          <Col span={6}>
+          <Card
+                onClick={this.handleDiet}
+
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={img3} className="suret"/>}
@@ -182,7 +186,8 @@ class Welcome extends Component {
                 hoverable
                 style={{ width: 240 }}
                 cover={<img alt="example" src={img9} className="suret" />}
-                
+                onClick={this.handleUsuall}
+
           >
                 <Meta
                   title="Ежедневное"                  
@@ -194,6 +199,8 @@ class Welcome extends Component {
                 hoverable
                 style={{ width: 240}}
                 cover={<img alt="example" src={img4} className="suret"/>}
+                onClick={this.handleIll}
+
           >
                 <Meta
                   title="Для болеющих"                  
