@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+
 
 import { withRouter } from "react-router-dom";
 import './home.css';
-import {  Icon, Modal,Form, Input, Button, Checkbox,} from 'antd';
-import axios from 'axios';
-import ReactDOM from 'react-dom';
+import '../pages/welcome.css'
+import {  Icon, Modal,Form, Input,  Checkbox, Dropdown, Menu } from 'antd';
+
+
+import { connect } from 'react-redux';
+import { loginUser, logoutUser } from '../actions/auth';
 
 const Container = styled.div`
   width: 100%;
@@ -35,15 +38,26 @@ const RightContainer = styled.div`
 `;
 
 const PageLink = styled.a`
-  padding-right: 10px;  
+  padding-right: 20px;  
   font-size: 15px;
   text-decoration: none;
   color: white;
-  padding-right: 15 px;
-  margin-left: 65px;
+  margin-left: 20px;
   
 `;
 
+const menu = (
+  <Menu>
+    <Menu.Item key="0">
+      <a href="/profile" className="link">Мой профиль</a>
+    </Menu.Item>
+    <Menu.Item key="1">
+      <a href="" className="link">Мое меню</a>
+    </Menu.Item>
+    <Menu.Divider />
+    <Menu.Item key="3"><a href="" className="link" href="/home">Выйти</a></Menu.Item>
+  </Menu>
+);
 
 class HeaderExample extends Component {
   
@@ -69,12 +83,16 @@ class HeaderExample extends Component {
     this.setState({ visible: false });
   }
 
-
   state = {
     email: '',
     password: '',
-    result: null
   };
+
+  handleLogout = (event) => {
+    event.preventDefault();
+
+    this.props.logoutUser();
+  }
 
   handleEmailChange = (event) =>{
     this.setState({ email: event.target.value })
@@ -88,6 +106,7 @@ class HeaderExample extends Component {
     event.preventDefault();
 
     const { email, password, result } = this.state;
+    const { loginUser, history, auth } = this.props;
 
     const user = {
       email: email,
@@ -95,35 +114,55 @@ class HeaderExample extends Component {
     }
 
     console.log(user)
-    
-    axios.post(`http://10.27.177.159/back/api/login.php`, user)
-      .then(res => {
-        this.setState({ result: res})
-        console.log("Data", res)  
-        this.props.history.push('/welcome')
-      })
-      .catch(res =>{
-        console.log("Exception", res)
-      }
-      )
+    this.props.loginUser(user, history);
+    this.setState({ visible: false })
   }
-
-
 
   render() {
     const { getFieldDecorator } = this.props.form;
+    const { auth } = this.props;
     const { visible, loading } = this.state;
+    this.props.auth && console.log(this.props.auth, 'user')
+    console.log(auth, 'auth')
     return (
       <Container>
         <LeftContainer>
         <PageLink href="/home" title="Tamaqtan" className="logo">TAMAQTAN</PageLink>    
         </LeftContainer>
 
-        <RightContainer>    
-          <PageLink href="/home" title="Главная">Главная</PageLink>      
-          <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
-          <PageLink href="#" title="Супер поиск">Супер поиск</PageLink>
-          <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
+        <RightContainer>  
+          {
+            auth && auth.is_user.localeCompare("2") === 0 ?
+            <div>
+              <PageLink href="/tamaq" title="Блюдо">Блюдо</PageLink>      
+              {/* <PageLink href="/menu" title="Меню">Меню</PageLink>   
+              <PageLink href="/clients" title="Клиенты">Клиенты</PageLink>    */}
+            </div>
+          :
+          <div>
+              <PageLink href="/randomFood" title="Случайное блюдо">Случайное блюдо</PageLink>
+            </div>
+          }
+          {
+            auth && auth.is_user.localeCompare("1") === 0 && <div>
+            
+            <PageLink href="/welcome" title="Главная">Категорий</PageLink>      
+              <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
+
+            </div>
+
+          }
+
+          {auth ? <div style={{ "display": "flex", "flexDirection": "row"}}>
+            <Dropdown overlay={menu} trigger={['click']}>
+              <a className="loginn" href="#" style={{ 'marginLeft': '500px'}}>
+                {auth.firstname} <Icon type="down" />
+              </a>
+            </Dropdown>
+            
+          </div>
+          : <PageLink title="Вход" className="vhod" onClick={this.showModal}>Вход</PageLink>
+          }
         </RightContainer>
         <div>
         
@@ -167,20 +206,21 @@ class HeaderExample extends Component {
               <button type='submit' className="login-form-button">
                 Вход
               </button>
-               <a href="/register">Зарегистрироваться</a>
+              <a href="/register">Зарегистрироваться</a>
             </Form.Item>
       </Form>
         </Modal>
         
       </div>  
       </Container>
-
-
-    
     );
   }
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
+
 const EnhancedHeader = withRouter(HeaderExample);
 
-export default Form.create()(EnhancedHeader);
+export default connect(mapStateToProps, { loginUser, logoutUser })(Form.create()(EnhancedHeader));
