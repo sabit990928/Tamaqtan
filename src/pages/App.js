@@ -16,6 +16,7 @@ import StaticMenu from "./StaticMenu";
 import Menus from "./Menus";
 import Recept from "./Recept";
 import OneFood from "./OneFood";
+import WeeklyMenu from "./WeeklyMenu";
 class App extends Component{
   render(){
     return (
@@ -36,6 +37,7 @@ class App extends Component{
           <Route exact path="/menu" component={Menus} />
           <Route exact path="/recept"  component={Recept} />
           <Route exact path="/food/:id"  component={OneFood} />
+          <Route exact path="/weekly" component={WeeklyMenu} />
         </Layout>
       </BrowserRouter>
     </div>
