@@ -32,5 +32,7 @@ export const loginUser = (userData, history) => dispatch => {
 
 export const logoutUser = (dispatch) => {
   localStorage.removeItem('token');
+  localStorage.removeItem('state');
+
   dispatch({ type: LOGOUT_USER });
 };
