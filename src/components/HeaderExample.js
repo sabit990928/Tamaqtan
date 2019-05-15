@@ -108,13 +108,13 @@ class HeaderExample extends Component {
     const { visible, loading } = this.state;
     const menu = (
       <Menu>
-        <Menu.Item key="0">
+        {/* <Menu.Item key="0">
           <a href="/profile" className="link">Мой профиль</a>
         </Menu.Item>
         <Menu.Item key="1">
           <a href="" className="link">Мое меню</a>
-        </Menu.Item>
-        <Menu.Divider />
+        </Menu.Item> */}
+        {/* <Menu.Divider /> */}
         <Menu.Item onClick={this.handleLogout} key="3"><a href="" className="link" href="/home">Выйти</a></Menu.Item>
       </Menu>
     );
@@ -141,8 +141,9 @@ class HeaderExample extends Component {
           {
             auth && auth.is_user.localeCompare("1") === 0 && <div>
             
-            <PageLink href="/welcome" title="Главная">Категорий</PageLink>      
+              <PageLink href="/welcome" title="Главная">Категорий</PageLink>      
               <PageLink href="/recipes" title="Рецепты">Рецепты</PageLink>
+              <PageLink href="/weekly" title="Неделя">Меню на неделю</PageLink> 
 
             </div>
 

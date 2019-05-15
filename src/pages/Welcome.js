@@ -130,7 +130,7 @@ class Welcome extends Component {
 
           <h2>Меню по категориям</h2>
           <div style={{ background: 'white', padding: '30px' }} className="recept">
-        <Row gutter={16}>
+        <Row gutter={16} style={{ marginLeft: 300}}>
           <Col span={6}>
             {/* <a href="/menu"> */}
             <Card 
@@ -180,7 +180,7 @@ class Welcome extends Component {
     </Row>
     <br></br>
     <br></br>
-    <Row gutter={16}>
+    <Row gutter={16} style={{ marginLeft: 400}}>
       <Col span={6}>
       <Card
                 hoverable
