@@ -151,7 +151,7 @@ class HeaderExample extends Component {
 
           {auth ? <div style={{ "display": "flex", "flexDirection": "row"}}>
             <Dropdown overlay={menu} trigger={['click']}>
-              <a className="loginn" href="#" style={{ 'marginLeft': '500px'}}>
+              <a className="loginn" href="#" style={{ 'marginLeft': '400px'}}>
                 {auth.firstname} <Icon type="down" />
               </a>
             </Dropdown>
