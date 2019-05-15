@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
 
-
 import { withRouter } from "react-router-dom";
 import './home.css';
 import '../pages/welcome.css'
-import {  Icon, Modal,Form, Input,  Checkbox, Dropdown, Menu } from 'antd';
-
+import {  Icon, Modal,Form, Input, Checkbox, Dropdown, Menu } from 'antd';
 
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../actions/auth';
@@ -46,20 +44,8 @@ const PageLink = styled.a`
   
 `;
 
-const menu = (
-  <Menu>
-    <Menu.Item key="0">
-      <a href="/profile" className="link">Мой профиль</a>
-    </Menu.Item>
-    <Menu.Item key="1">
-      <a href="" className="link">Мое меню</a>
-    </Menu.Item>
-    <Menu.Divider />
-    <Menu.Item key="3"><a href="" className="link" href="/home">Выйти</a></Menu.Item>
-  </Menu>
-);
-
 class HeaderExample extends Component {
+  
   
   state = {
     loading: false,
@@ -71,59 +57,68 @@ class HeaderExample extends Component {
       visible: true,
     });
   }
-
+  
   handleOk = () => {
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false, visible: false });
     }, 3000);
   }
-
+  
   handleCancel = () => {
     this.setState({ visible: false });
   }
-
+  
   state = {
     email: '',
     password: '',
   };
-
-  handleLogout = (event) => {
-    event.preventDefault();
-
+  
+  handleLogout = () => {
     this.props.logoutUser();
   }
-
+  
   handleEmailChange = (event) =>{
     this.setState({ email: event.target.value })
   }
-
+  
   handlePasswordChange = (event) =>{
     this.setState({ password: event.target.value })
   }
-
+  
   handleSubmit = (event) => {
     event.preventDefault();
-
+    
     const { email, password, result } = this.state;
     const { loginUser, history, auth } = this.props;
-
+    
     const user = {
       email: email,
       password: password
     }
-
+    
     console.log(user)
     this.props.loginUser(user, history);
     this.setState({ visible: false })
   }
-
+  
   render() {
     const { getFieldDecorator } = this.props.form;
     const { auth } = this.props;
     const { visible, loading } = this.state;
-    this.props.auth && console.log(this.props.auth, 'user')
-    console.log(auth, 'auth')
+    const menu = (
+      <Menu>
+        <Menu.Item key="0">
+          <a href="/profile" className="link">Мой профиль</a>
+        </Menu.Item>
+        <Menu.Item key="1">
+          <a href="" className="link">Мое меню</a>
+        </Menu.Item>
+        <Menu.Divider />
+        <Menu.Item onClick={this.handleLogout} key="3"><a href="" className="link" href="/home">Выйти</a></Menu.Item>
+      </Menu>
+    );
+    this.props.auth && console.log(auth, 'user')
     return (
       <Container>
         <LeftContainer>
