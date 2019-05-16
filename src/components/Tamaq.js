@@ -32,16 +32,16 @@ const Image = styled.img`
 `;
 
 class Tamaq extends Component{
-    render(){
-        
-        const { tamaq } = this.props;
+  render(){
+    
+        const { tamaq, history } = this.props;
       return (
         <Container>
-           <Left>
-               
+          <Left>
+              
                 <Image src={tamaq[0].img_address}/>
-           </Left>
-            <Right>
+          </Left>
+          <Right>
                 <h1>{tamaq[0].name}</h1>
                 <div>
                     <h4>{tamaq[0].time_name } ~ {tamaq[0].type_name} ~ {tamaq[0].user_type_name}</h4>
@@ -51,9 +51,8 @@ class Tamaq extends Component{
                   
                 {tamaq[0].recept }
                 </p>
-               
+                <button onClick={() => this.props.history.goBack()}>Назад</button>
             </Right>
-         
         </Container>
             
         
