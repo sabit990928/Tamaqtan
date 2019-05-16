@@ -3,8 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 import { Table, Tag } from 'antd';
-
+import { connect } from 'react-redux';
 import { DayMenu } from '../components';
+import { saveMenu } from '../actions/auth';
 
 const { CheckableTag } = Tag;
 
@@ -24,30 +25,38 @@ class Menus extends Component{
   }
   
 
+
   fetchData = (type) =>{
     switch(type){
       case "sport": 
         return axios.get(`http://localhost/back/api/get_random_week_sport.php`)
           .then(res => {
             const data = res.data.records;
+            this.props.saveMenu(data)
             this.setState({ data });
           }).catch(res => console.log("Err: ", res));
       case "usual":
         return axios.get(`http://localhost/back/api/get_random_week_usuall.php`)
         .then(res => {
           const data = res.data.records;
+          this.props.saveMenu(data)
+
           this.setState({ data });
         }).catch(res => console.log("Err: ", res));
       case "ill":
         return axios.get(`http://localhost/back/api/get_random_week_ill.php`)
         .then(res => {
           const data = res.data.records;
+          this.props.saveMenu(data)
+
           this.setState({ data });
         }).catch(res => console.log("Err: ", res));
       case "berem":
         return axios.get(`http://localhost/back/api/get_random_week_berem.php`)
         .then(res => {
           const data = res.data.records;
+          this.props.saveMenu(data)
+
           this.setState({ data });
         }).catch(res => console.log("Err: ", res));
       case "diet":
@@ -55,6 +64,8 @@ class Menus extends Component{
         .then(res => {
           const data = res.data.records;
           this.setState({ data });
+          this.props.saveMenu(data)
+
         }).catch(res => console.log("Err: ", res)); 
     }   
   }
@@ -84,8 +95,11 @@ class Menus extends Component{
     this.fetchData("berem")
   }
       render() {
+        console.log(this.props)
         const { data, type } = this.state;
+        data && data.length === 0 && this.setState({ data: this.props.auth.default })
         console.log('data', data)
+
         return (
           <div>
             <TagContainer>
@@ -96,45 +110,45 @@ class Menus extends Component{
               <Checkable checked={type==="ill"} onChange={this.handleIll}>Для болеющих</Checkable>
             </TagContainer>
             <h2>Ваше меню на неделю</h2>
-            {data.length === 0 && <h3>Выберите тип для меню</h3>}
-            { data.length > 0 && <DayMenu 
+            {data && data.length === 0 && <h3>Выберите тип для меню</h3>}
+            { data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Понедельник" breakfast={data[0].f1_name} lunch={data[0].f2_name} dinner={data[0].f3_name} 
               breakfastId={data[0].f1_id} lunchId={data[0].f2_id} dinnerId={data[0].f3_id}
               breakfastImg={data[0].f1_img} lunchImg={data[0].f2_img} dinnerImg={data[0].f3_img} 
             />
             
             }
-            { data.length > 0 && <DayMenu 
+            { data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Вторник" breakfast={data[0].f4_name} lunch={data[0].f5_name} dinner={data[0].f6_name} 
               breakfastId={data[0].f4_id} lunchId={data[0].f5_id} dinnerId={data[0].f6_id}
               breakfastImg={data[0].f4_img} lunchImg={data[0].f5_img} dinnerImg={data[0].f6_img} 
             />
             }
-            {data.length > 0 && <DayMenu 
+            {data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Среда" breakfast={data[0].f7_name} lunch={data[0].f8_name} dinner={data[0].f9_name} 
               breakfastId={data[0].f7_id} lunchId={data[0].f8_id} dinnerId={data[0].f9_id}
               breakfastImg={data[0].f7_img} lunchImg={data[0].f8_img} dinnerImg={data[0].f9_img} 
             />
             }
-            {data.length > 0 && <DayMenu 
+            {data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Четверг" breakfast={data[0].f10_name} lunch={data[0].f11_name} dinner={data[0].f12_name} 
               breakfastId={data[0].f10_id} lunchId={data[0].f11_id} dinnerId={data[0].f12_id}
               breakfastImg={data[0].f10_img} lunchImg={data[0].f11_img} dinnerImg={data[0].f12_img} 
             />
             }
-            {data.length > 0 && <DayMenu 
+            {data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Пятница" breakfast={data[0].f13_name} lunch={data[0].f14_name} dinner={data[0].f15_name} 
               breakfastId={data[0].f13_id} lunchId={data[0].f14_id} dinnerId={data[0].f15_id}
               breakfastImg={data[0].f13_img} lunchImg={data[0].f14_img} dinnerImg={data[0].f15_img} 
             />
             }
-            {data.length > 0 && <DayMenu 
+            {data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Суббота" breakfast={data[0].f16_name} lunch={data[0].f17_name} dinner={data[0].f18_name} 
               breakfastId={data[0].f16_id} lunchId={data[0].f17_id} dinnerId={data[0].f18_id}
               breakfastImg={data[0].f16_img} lunchImg={data[0].f17_img} dinnerImg={data[0].f18_img} 
             />
             }
-            {data.length > 0 && <DayMenu 
+            {data && data.length > 0 && <DayMenu savedMenu={data} 
               day="Воскресенье" breakfast={data[0].f19_name} lunch={data[0].f20_name} dinner={data[0].f21_name} 
               breakfastId={data[0].f19_id} lunchId={data[0].f20_id} dinnerId={data[0].f21_id}
               breakfastImg={data[0].f19_img} lunchImg={data[0].f20_img} dinnerImg={data[0].f21_img} 
@@ -145,5 +159,8 @@ class Menus extends Component{
       }
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth
+})
 
-export default Menus;
+export default connect(mapStateToProps, { saveMenu })(Menus);
