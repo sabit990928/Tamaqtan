@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { FETCH_USER, LOGOUT_USER } from './types';
+import { FETCH_USER, LOGOUT_USER, SAVE_MENU } from './types';
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({ type: FETCH_USER, payload: user });
@@ -36,3 +36,7 @@ export const logoutUser = (dispatch) => {
 
   dispatch({ type: LOGOUT_USER });
 };
+
+export const saveMenu = (savedMenu) => (dispatch) => {
+  dispatch({ type: SAVE_MENU, payload: savedMenu })
+}
