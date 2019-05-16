@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import {Link} from 'react-router-dom'
 
-import { Table } from 'antd';
+import { Table, Button, Icon} from 'antd';
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin-left: 260px;
+  align-items: flex-end;
+`
 
 const columns = [
   { title: 'Завтрак', dataIndex: 'f1_name', key: 'name',
@@ -25,7 +33,6 @@ class Menus extends Component{
   }
   
   componentDidMount(){
-
     switch(this.props.location.state.type){
       case "sport": 
         return axios.get(`http://localhost/back/api/getMenuSport.php`)
@@ -62,10 +69,13 @@ class Menus extends Component{
 }
       render() {
         const { data } = this.state;
-        console.log(this.props, ' props')
+        const { history } = this.props;
         return (
           <div>
-            <h2>Ваше меню</h2>
+            <Header>
+              <Button onClick={() => history.goBack()}><Icon type="left" />Назад</Button>
+              <h2 style={{ marginLeft: 350 }}>Наши меню</h2>
+            </Header>
             <Table
               style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
               columns={columns}
