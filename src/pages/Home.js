@@ -78,12 +78,12 @@ class Home extends Component {
       <div className="div"> 
         {this.renderRedirect()}
         <div className="search">
-          <Search
+          {/* <Search
           placeholder="Введите название блюда или ингредиента"
           title="Поиск"
           onSearch={value => console.log(value)}
           enterButton/>
-        <br /><br />
+        <br /><br /> */}
 
         <Carousel autoplay>
           <div><img src={"http://proka4aem.ru/wp-content/uploads/2016/06/racion-pitaniya-sportsmenov-na-kazhdyj-den.jpg"} className="img1"/></div>
