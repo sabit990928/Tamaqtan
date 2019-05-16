@@ -10,7 +10,7 @@ class OneFood extends Component {
     data: []
   }
   fetchRandomFood = () => {
-      const { match } = this.props
+    const { match, history } = this.props
     axios.get(`http://localhost/back/api/readOne.php?id=${match.params.id}`)
       .then(res => {
         const data = res.data.records;
@@ -20,14 +20,12 @@ class OneFood extends Component {
   }
       render() {
         console.log('param', this.props.match)
-
+        const { history } = this.props
         const { data } = this.state;
         return (
-          
           <div>
-            
             {
-                data.length > 0 && <Tamaq tamaq={data} />
+                data.length > 0 && <Tamaq tamaq={data} history={history} />
             }
           </div>
         );

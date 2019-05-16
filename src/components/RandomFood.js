@@ -26,7 +26,7 @@ class RandomFood extends Component {
             
             {/* <Button onClick={this.fetchRandomFood}>Найти случайное блюдо</Button> */}
             
-            { data.length > 0 && <Tamaq tamaq={data} />
+            { data.length > 0 && <Tamaq tamaq={data} history={this.props.history} />
             }
           </div>
         );
